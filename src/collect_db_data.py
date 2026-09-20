@@ -1,17 +1,19 @@
 import os
 import time
 import urllib.request
-import pyarrow as pa
-import pyarrow.parquet as pq
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 from dotenv import load_dotenv
 
-
 load_dotenv()
+
+BERLIN_TZ = ZoneInfo("Europe/Berlin")
 
 CLIENT_ID = os.getenv("DB_CLIENT_ID")
 CLIENT_SECRET = os.getenv("DB_CLIENT_SECRET")
@@ -42,7 +44,7 @@ INTERVAL_MINUTES = 10
 TEST_DURATION_MINUTES = 30
 
 def get_xml(url):
-    collected_at = datetime.now()
+    collected_at = datetime.now(BERLIN_TZ)
 
     request = urllib.request.Request(
         url,
@@ -64,7 +66,7 @@ def parse_db_time(value):
     return datetime.strptime(value, "%y%m%d%H%M")
 
 def collect_station_snapshot(station_name, station_eva):
-    now = datetime.now()
+    now = datetime.now(BERLIN_TZ)
 
     date = now.strftime("%y%m%d")
     hour = now.strftime("%H")
