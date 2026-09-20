@@ -1,6 +1,8 @@
 import os
 import time
 import urllib.request
+import pyarrow as pa
+import pyarrow.parquet as pq
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
@@ -186,38 +188,44 @@ def collect_all_stations(snapshot_id):
     )
 
 if __name__ == "__main__":
-    all_snapshots = []
+    output_dir = "data/processed/api_current"
 
-    rounds = TEST_DURATION_MINUTES // INTERVAL_MINUTES + 1
+    print("Starting DB API snapshot collection...")
+    print(f"Output directory: {output_dir}")
+    print()
 
-    for round_number in range(rounds):
+    df = collect_all_stations(snapshot_id=1)
+
+    if not df.empty:
+        collected_date = (
+            df["collected_at"]
+            .dt.strftime("%Y-%m-%d")
+            .iloc[0]
+        )
+
+        collected_time = (
+            df["collected_at"]
+            .dt.strftime("%H-%M")
+            .iloc[0]
+        )
+
+        output_path = (
+            f"{output_dir}/"
+            f"snapshot_{collected_date}_{collected_time}.parquet"
+        )
+
+        table = pa.Table.from_pandas(
+            df,
+            preserve_index=False,
+        )
+
+        pq.write_table(table, output_path)
+
         print()
-        print(f"=== Snapshot {round_number + 1}/{rounds} ===")
-
-        df = collect_all_stations(round_number + 1)
-        all_snapshots.append(df)
-
         print(f"Snapshot records: {len(df)}")
-
-        if round_number < rounds - 1:
-            print()
-            print(f"Waiting {INTERVAL_MINUTES} minutes...")
-            time.sleep(INTERVAL_MINUTES * 60)
-
-    result = pd.concat(
-        all_snapshots,
-        ignore_index=True,
-    )
-
-    output_path = "data/processed/db_api_test_30min_v2.parquet"
-
-    result.to_parquet(
-        output_path,
-        index=False,
-    )
+        print(f"Saved to: {output_path}")
+    else:
+        print("No records collected.")
 
     print()
-    print("30-minute collection finished.")
-    print(f"Total records: {len(result)}")
-    print(f"Shape: {result.shape}")
-    print(f"Saved to: {output_path}")
+    print("Snapshot collection finished.")
