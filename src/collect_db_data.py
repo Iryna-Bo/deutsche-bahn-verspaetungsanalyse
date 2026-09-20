@@ -189,6 +189,7 @@ def collect_all_stations(snapshot_id):
 
 if __name__ == "__main__":
     output_dir = "data/processed/api_current"
+    os.makedirs(output_dir, exist_ok=True)
 
     print("Starting DB API snapshot collection...")
     print(f"Output directory: {output_dir}")
