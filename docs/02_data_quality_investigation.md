@@ -2,52 +2,59 @@
 
 ## Ziel
 
-Während der explorativen Analyse wurden mehrere Punkte gefunden, die vor der Berechnung der finalen KPIs geprüft werden müssen.
+Während der explorativen Analyse wurden einige Punkte gefunden, die vor der Berechnung der finalen KPIs geprüft werden müssen:
 
-Der Schwerpunkt dieser Untersuchung liegt auf:
-
-* ungewöhnlichen negativen Verspätungswerten
-* fehlenden geplanten Zeiten
-* der Interpretation von Ausfall-Datensätzen
+* ungewöhnliche negative Werte bei `delay_in_min`
+* fehlende geplante Zeiten
+* Interpretation von Ausfall-Datensätzen
 
 ## Negative Werte bei `delay_in_min`
 
-Im Datensatz kommen auch negative Werte bei `delay_in_min` vor.
+Im Datensatz kommen auch negative Werte bei `delay_in_min` vor. Kleine negative Werte können dabei normale Abweichungen darstellen, zum Beispiel eine frühere Ankunft oder Abfahrt.
 
-Die meisten negativen Werte sind relativ klein. Es gibt jedoch einzelne sehr große negative Werte.
+Es gibt jedoch auch sehr große negative Werte. Für März 2025 wurde ein Minimum von **-1.435 Minuten** gefunden. Das entspricht fast 24 Stunden und ist für eine normale Verspätung nicht plausibel.
 
-Für März 2025 wurde zum Beispiel ein Minimum von etwa **-1.435 Minuten** gefunden.
+### Untersuchung
 
-Das entspricht einer Differenz von fast 24 Stunden und ist für eine normale Verspätung nicht plausibel.
-
-### Untersuchung der Berechnung
-
-Die Spalte `delay_in_min` wird aus den geplanten (`pt`) und geänderten (`ct`) Zeiten berechnet.
-
-Vereinfacht:
+`delay_in_min` wird aus geplanten (`pt`) und geänderten (`ct`) Zeiten berechnet:
 
 ```text
 delay = changed_time - planned_time
 ```
 
-Dabei ist `ct` laut der Dokumentation der Deutsche Bahn die neue geschätzte oder tatsächliche Ankunfts- bzw. Abfahrtszeit.
+Die Untersuchung der zugrunde liegenden XML-Daten zeigte, dass die extremen negativen Werte **nicht durch einen einfachen Fehler bei der Datumsumwandlung entstehen**.
 
-Die Untersuchung der zugrunde liegenden XML-Daten zeigte, dass die großen negativen Werte **nicht durch einen einfachen Fehler bei der Datumsumwandlung entstehen**.
+Die genaue Ursache konnte mit den verfügbaren Daten jedoch nicht eindeutig bestimmt werden. Mögliche Fahrplanänderungen oder Anomalien in den Änderungsdaten können nicht ausgeschlossen werden.
 
-Die genaue Ursache der extremen negativen Werte konnte auf Basis der verfügbaren Daten jedoch nicht eindeutig bestimmt werden.
+Ein Beispiel war die Zugfahrt mit der ID `603466462240183523`. Dabei wurden an mehreren Bahnhöfen sehr große negative Werte mit einem gemeinsamen Änderungszeitpunkt beobachtet.
 
-Mögliche operative Fahrplanänderungen oder Anomalien in den zugrunde liegenden Änderungsdaten können nicht ausgeschlossen werden.
+## Umgang mit Ausreißern
 
-Deshalb werden solche Werte nicht ohne weitere Prüfung als normale Verspätungen interpretiert.
+Extreme Werte werden **nicht automatisch gelöscht**.
 
-## Beispiel für einen ungewöhnlichen Wert
+Sie bleiben im Rohdatensatz erhalten und werden für die weitere Analyse gekennzeichnet:
 
-Bei der Untersuchung wurde unter anderem die Zugfahrt mit der ID `603466462240183523` betrachtet.
+* unter **-60 Minuten** → `extreme_negative`
+* ab **180 Minuten** → `extreme_positive`
 
-Für mehrere Bahnhöfe wurden dabei sehr große negative Werte beobachtet.
+Diese Kennzeichnung bedeutet nicht automatisch, dass die Werte falsch sind. Sie ermöglicht eine getrennte Prüfung bei der Berechnung der KPIs.
 
-Die Werte traten an mehreren Stationen derselben Fahrt auf und verwendeten jeweils einen gemeinsamen Änderungszeitpunkt.
+## Fehlende geplante Zeiten
 
-Dieses Muster zeigt, dass die Werte nicht einfach als normale negative Verspätungen interpretiert werden sollten.
+Bei einem Teil der Datensätze fehlen geplante Ankunfts- oder Abfahrtszeiten (`pt`).
 
-Die genaue Ursache wird in diesem Projekt ni
+Für März 2025 waren geplante Zeiten bei ungefähr **22 % der Datensätze** nicht vorhanden.
+
+Für zeitbasierte Verspätungs-KPIs werden deshalb nur Datensätze verwendet, bei denen die benötigten Zeitinformationen vorhanden sind.
+
+## Ausfall-Datensätze
+
+Die Anzahl der Ausfall-Datensätze entspricht nicht automatisch der Anzahl der ausgefallenen Zugfahrten.
+
+Ein Zug kann an mehreren Bahnhöfen entsprechende Datensätze erzeugen. Deshalb müssen Datensätze und eindeutige Zugfahrten bei der weiteren Analyse unterschieden werden.
+
+## Fazit
+
+Die Datenqualitätsprüfung zeigt, dass einige Werte und Felder vor der KPI-Berechnung berücksichtigt werden müssen.
+
+Die Rohdaten bleiben unverändert. Auffällige Werte werden gekennzeichnet und je nach KPI separat behandelt.
