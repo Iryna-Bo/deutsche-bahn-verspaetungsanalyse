@@ -30,31 +30,31 @@ Der Datensatz enthält unter anderem folgende Felder:
 
 
 
-\* `train\_line\_ride\_id`
+\* `train_line_ride_id`
 
-\* `train\_line\_station\_num`
+\* `train_line_station_num`
 
-\* `train\_number`
+\* `train_number`
 
 \* `time`
 
-\* `arrival\_planned\_time`
+\* `arrival_planned_time`
 
-\* `departure\_planned\_time`
+\* `departure_planned_time`
 
-\* `delay\_in\_min`
+\* `delay_in_min`
 
-\* `arrival\_is\_canceled`
+\* `arrival_is_canceled`
 
-\* `departure\_is\_canceled`
+\* `departure_is_canceled`
 
-\* `is\_replacement\_train`
+\* `is_replacement_train`
 
-\* `replaced\_train\_number`
+\* `replaced_train_number`
 
 
 
-Zunächst lag die Vermutung nahe, dass `train\_line\_ride\_id` eine einzelne Zugfahrt eindeutig identifiziert.
+Zunächst lag die Vermutung nahe, dass `train_line_ride_id` eine einzelne Zugfahrt eindeutig identifiziert.
 
 
 
@@ -66,11 +66,11 @@ Die Datenprüfung zeigte jedoch, dass dies nicht der Fall ist.
 
 
 
-\## 2. `train\_line\_ride\_id` ist kein eindeutiger physischer Zuglauf
+\## 2. `train_line_ride_id` ist kein eindeutiger physischer Zuglauf
 
 
 
-Ein `train\_line\_ride\_id` kann innerhalb eines Monats mehrfach vorkommen.
+Ein `train_line_ride_id` kann innerhalb eines Monats mehrfach vorkommen.
 
 
 
@@ -80,11 +80,11 @@ Beispiel:
 
 ```text
 
-train\_line\_ride\_id = -2821038168538545983
+train_line_ride_id = -2821038168538545983
 
-train\_line\_station\_num = 1
+train_line_station_num = 1
 
-train\_number = 3670
+train_number = 3670
 
 ```
 
@@ -94,7 +94,7 @@ Dieser Service erscheint an vielen verschiedenen Tagen im März 2025.
 
 
 
-Damit beschreibt `train\_line\_ride\_id` ein \*\*wiederkehrendes geplantes Service- bzw. Fahrplanmuster\*\* und nicht eine einzelne physische Zugfahrt an einem bestimmten Tag.
+Damit beschreibt `train_line_ride_id` ein \*\*wiederkehrendes geplantes Service- bzw. Fahrplanmuster\*\* und nicht eine einzelne physische Zugfahrt an einem bestimmten Tag.
 
 
 
@@ -102,7 +102,7 @@ Damit beschreibt `train\_line\_ride\_id` ein \*\*wiederkehrendes geplantes Servi
 
 
 
-`train\_line\_ride\_id` darf bei der Berechnung von Fahrt-Kennzahlen nicht einfach als Anzahl der einzelnen Zugfahrten interpretiert werden.
+`train_line_ride_id` darf bei der Berechnung von Fahrt-Kennzahlen nicht einfach als Anzahl der einzelnen Zugfahrten interpretiert werden.
 
 
 
@@ -126,7 +126,7 @@ Beispiel:
 
 
 
-| `time`           | `departure\_planned\_time` |
+| `time`           | `departure_planned_time` |
 
 | ---------------- | ------------------------ |
 
@@ -156,7 +156,7 @@ Für die Rekonstruktion eines geplanten Service-Ereignisses wird stattdessen die
 
 
 
-\## 4. Definition von `planned\_event\_time`
+\## 4. Definition von `planned_event_time`
 
 
 
@@ -168,11 +168,11 @@ Für die weitere Untersuchung wurde folgende Variable definiert:
 
 COALESCE(
 
-   departure\_planned\_time,
+   departure_planned_time,
 
-   arrival\_planned\_time
+   arrival_planned_time
 
-) AS planned\_event\_time
+) AS planned_event_time
 
 ```
 
@@ -196,11 +196,11 @@ Anschließend wurde geprüft, ob folgende Kombination ein Event eindeutig identi
 
 ```text
 
-train\_line\_ride\_id
+train_line_ride_id
 
-\+ train\_line\_station\_num
+\+ train_line_station_num
 
-\+ planned\_event\_time
+\+ planned_event_time
 
 ```
 
@@ -214,45 +214,45 @@ SQL:
 
 SELECT
 
-   train\_line\_ride\_id,
+   train_line_ride_id,
 
-   train\_line\_station\_num,
+   train_line_station_num,
 
-   train\_type,
+   train_type,
 
    COALESCE(
 
-       departure\_planned\_time,
+       departure_planned_time,
 
-       arrival\_planned\_time
+       arrival_planned_time
 
-   ) AS planned\_event\_time,
+   ) AS planned_event_time,
 
    COUNT(\*) AS records
 
-FROM read\_parquet('{url}')
+FROM read_parquet('{url}')
 
-WHERE train\_line\_ride\_id IS NOT NULL
+WHERE train_line_ride_id IS NOT NULL
 
- AND train\_line\_station\_num IS NOT NULL
+ AND train_line_station_num IS NOT NULL
 
  AND COALESCE(
 
-       departure\_planned\_time,
+       departure_planned_time,
 
-       arrival\_planned\_time
+       arrival_planned_time
 
      ) IS NOT NULL
 
 GROUP BY
 
-   train\_line\_ride\_id,
+   train_line_ride_id,
 
-   train\_line\_station\_num,
+   train_line_station_num,
 
-   train\_type,
+   train_type,
 
-   planned\_event\_time
+   planned_event_time
 
 HAVING COUNT(\*) > 1
 
@@ -280,7 +280,7 @@ Damit ist diese Kombination im untersuchten März-Datensatz eindeutig:
 
 
 
-> `train\_line\_ride\_id + train\_line\_station\_num + planned\_event\_time`
+> `train_line_ride_id + train_line_station_num + planned_event_time`
 
 
 
@@ -300,43 +300,43 @@ Anschließend wurde die Anzahl der Rohdaten mit der Anzahl der eindeutigen gepla
 
 SELECT
 
-   COUNT(\*) AS raw\_observations,
+   COUNT(\*) AS raw_observations,
 
 
 
    COUNT(DISTINCT
 
-       train\_line\_ride\_id
+       train_line_ride_id
 
        || '-'
 
-       || train\_line\_station\_num::VARCHAR
+       || train_line_station_num::VARCHAR
 
        || '-'
 
        || COALESCE(
 
-           departure\_planned\_time,
+           departure_planned_time,
 
-           arrival\_planned\_time
+           arrival_planned_time
 
        )::VARCHAR
 
-   ) AS unique\_scheduled\_station\_events
+   ) AS unique_scheduled_station_events
 
 
 
-FROM read\_parquet('{url}')
+FROM read_parquet('{url}')
 
-WHERE train\_line\_ride\_id IS NOT NULL
+WHERE train_line_ride_id IS NOT NULL
 
- AND train\_line\_station\_num IS NOT NULL
+ AND train_line_station_num IS NOT NULL
 
  AND COALESCE(
 
-       departure\_planned\_time,
+       departure_planned_time,
 
-       arrival\_planned\_time
+       arrival_planned_time
 
      ) IS NOT NULL;
 
@@ -384,23 +384,23 @@ Die Differenz von 10 Datensätzen wurde ebenfalls untersucht.
 
 SELECT
 
-   COUNT(\*) AS rows\_without\_event\_key,
+   COUNT(\*) AS rows_without_event_key,
 
 
 
    COUNT(\*) FILTER (
 
-       WHERE train\_line\_ride\_id IS NULL
+       WHERE train_line_ride_id IS NULL
 
-   ) AS missing\_ride\_id,
+   ) AS missing_ride_id,
 
 
 
    COUNT(\*) FILTER (
 
-       WHERE train\_line\_station\_num IS NULL
+       WHERE train_line_station_num IS NULL
 
-   ) AS missing\_station\_num,
+   ) AS missing_station_num,
 
 
 
@@ -408,29 +408,29 @@ SELECT
 
        WHERE COALESCE(
 
-           departure\_planned\_time,
+           departure_planned_time,
 
-           arrival\_planned\_time
+           arrival_planned_time
 
        ) IS NULL
 
-   ) AS missing\_planned\_time
+   ) AS missing_planned_time
 
 
 
-FROM read\_parquet('{url}')
+FROM read_parquet('{url}')
 
 WHERE
 
-   train\_line\_ride\_id IS NULL
+   train_line_ride_id IS NULL
 
-   OR train\_line\_station\_num IS NULL
+   OR train_line_station_num IS NULL
 
    OR COALESCE(
 
-       departure\_planned\_time,
+       departure_planned_time,
 
-       arrival\_planned\_time
+       arrival_planned_time
 
    ) IS NULL;
 
@@ -448,11 +448,11 @@ Ergebnis:
 
 | Datensätze ohne vollständigen Event-Key |     10 |
 
-| Fehlende `train\_line\_ride\_id`           |      0 |
+| Fehlende `train_line_ride_id`           |      0 |
 
-| Fehlende `train\_line\_station\_num`       |      0 |
+| Fehlende `train_line_station_num`       |      0 |
 
-| Fehlende `planned\_event\_time`           |     10 |
+| Fehlende `planned_event_time`           |     10 |
 
 
 
@@ -472,7 +472,7 @@ Die Rohdaten bleiben unverändert erhalten. Für Analysen, die eine geplante Eve
 
 
 
-Ein besonders interessantes Beispiel ist der `train\_line\_ride\_id`:
+Ein besonders interessantes Beispiel ist der `train_line_ride_id`:
 
 
 
@@ -502,11 +502,11 @@ Am 03.03.2025 finden sich zwei unterschiedliche geplante Events:
 
 
 
-Die beiden Datensätze haben unterschiedliche `planned\_event\_time` und sind deshalb keine Duplikate.
+Die beiden Datensätze haben unterschiedliche `planned_event_time` und sind deshalb keine Duplikate.
 
 
 
-Gleichzeitig zeigen die Merkmale `departure\_is\_canceled` und `is\_replacement\_train`, dass hier zwei unterschiedliche operative Zustände bzw. Ereignisse im Zusammenhang mit dem Service dokumentiert sind.
+Gleichzeitig zeigen die Merkmale `departure_is_canceled` und `is_replacement_train`, dass hier zwei unterschiedliche operative Zustände bzw. Ereignisse im Zusammenhang mit dem Service dokumentiert sind.
 
 
 
@@ -526,23 +526,23 @@ Aus diesen beiden Datensätzen allein wird jedoch \*\*keine kausale Abfolge beha
 
 | ------------------------ | ------------------------------------------------------------------------------------------ |
 
-| `train\_line\_ride\_id`     | Wiederkehrender geplanter Service / Fahrplanmuster                                         |
+| `train_line_ride_id`     | Wiederkehrender geplanter Service / Fahrplanmuster                                         |
 
-| `train\_line\_station\_num` | Position der Station innerhalb des Service                                                 |
+| `train_line_station_num` | Position der Station innerhalb des Service                                                 |
 
-| `planned\_event\_time`     | Geplante Zeit des Station Events                                                           |
+| `planned_event_time`     | Geplante Zeit des Station Events                                                           |
 
 | `time`                   | Zeitpunkt des Datensatzes bzw. der Beobachtung; nicht als primäres Service-Datum verwendet |
 
-| `train\_number`           | Zugnummer des jeweiligen Datensatzes                                                       |
+| `train_number`           | Zugnummer des jeweiligen Datensatzes                                                       |
 
-| `delay\_in\_min`           | Aus den geplanten und geänderten Zeitpunkten berechnete Zeitabweichung                     |
+| `delay_in_min`           | Aus den geplanten und geänderten Zeitpunkten berechnete Zeitabweichung                     |
 
-| `is\_replacement\_train`   | Kennzeichnung eines Ersatzverkehrs/-zuges gemäß Quelldatensatz                             |
+| `is_replacement_train`   | Kennzeichnung eines Ersatzverkehrs/-zuges gemäß Quelldatensatz                             |
 
-| `departure\_is\_canceled`  | Kennzeichnung einer ausgefallenen Abfahrt gemäß Quelldatensatz                             |
+| `departure_is_canceled`  | Kennzeichnung einer ausgefallenen Abfahrt gemäß Quelldatensatz                             |
 
-| `arrival\_is\_canceled`    | Kennzeichnung einer ausgefallenen Ankunft gemäß Quelldatensatz                             |
+| `arrival_is_canceled`    | Kennzeichnung einer ausgefallenen Ankunft gemäß Quelldatensatz                             |
 
 
 
@@ -568,11 +568,11 @@ Identifiziert durch:
 
 ```text
 
-train\_line\_ride\_id
+train_line_ride_id
 
-\+ train\_line\_station\_num
+\+ train_line_station_num
 
-\+ planned\_event\_time
+\+ planned_event_time
 
 ```
 
@@ -634,7 +634,7 @@ Die Untersuchung verhindert eine wichtige methodische Fehlinterpretation:
 
 ```text
 
-1 train\_line\_ride\_id = 1 Zugfahrt
+1 train_line_ride_id = 1 Zugfahrt
 
 ```
 
@@ -646,7 +646,7 @@ sondern:
 
 ```text
 
-train\_line\_ride\_id
+train_line_ride_id
 
        ↓
 
@@ -698,7 +698,7 @@ Für März 2025 konnten \*\*2.004.911 eindeutige Scheduled Station Events\*\* mi
 
 
 
-Die Untersuchung zeigt außerdem, dass `train\_line\_ride\_id` nicht als eindeutige ID einer einzelnen physischen Zugfahrt verwendet werden sollte.
+Die Untersuchung zeigt außerdem, dass `train_line_ride_id` nicht als eindeutige ID einer einzelnen physischen Zugfahrt verwendet werden sollte.
 
 
 
