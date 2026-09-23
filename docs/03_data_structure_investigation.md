@@ -168,9 +168,9 @@ Für die weitere Untersuchung wurde folgende Variable definiert:
 
 COALESCE(
 
-&#x20;   departure\_planned\_time,
+   departure\_planned\_time,
 
-&#x20;   arrival\_planned\_time
+   arrival\_planned\_time
 
 ) AS planned\_event\_time
 
@@ -214,45 +214,45 @@ SQL:
 
 SELECT
 
-&#x20;   train\_line\_ride\_id,
+   train\_line\_ride\_id,
 
-&#x20;   train\_line\_station\_num,
+   train\_line\_station\_num,
 
-&#x20;   train\_type,
+   train\_type,
 
-&#x20;   COALESCE(
+   COALESCE(
 
-&#x20;       departure\_planned\_time,
+       departure\_planned\_time,
 
-&#x20;       arrival\_planned\_time
+       arrival\_planned\_time
 
-&#x20;   ) AS planned\_event\_time,
+   ) AS planned\_event\_time,
 
-&#x20;   COUNT(\*) AS records
+   COUNT(\*) AS records
 
 FROM read\_parquet('{url}')
 
 WHERE train\_line\_ride\_id IS NOT NULL
 
-&#x20; AND train\_line\_station\_num IS NOT NULL
+ AND train\_line\_station\_num IS NOT NULL
 
-&#x20; AND COALESCE(
+ AND COALESCE(
 
-&#x20;       departure\_planned\_time,
+       departure\_planned\_time,
 
-&#x20;       arrival\_planned\_time
+       arrival\_planned\_time
 
-&#x20;     ) IS NOT NULL
+     ) IS NOT NULL
 
 GROUP BY
 
-&#x20;   train\_line\_ride\_id,
+   train\_line\_ride\_id,
 
-&#x20;   train\_line\_station\_num,
+   train\_line\_station\_num,
 
-&#x20;   train\_type,
+   train\_type,
 
-&#x20;   planned\_event\_time
+   planned\_event\_time
 
 HAVING COUNT(\*) > 1
 
@@ -300,29 +300,29 @@ Anschließend wurde die Anzahl der Rohdaten mit der Anzahl der eindeutigen gepla
 
 SELECT
 
-&#x20;   COUNT(\*) AS raw\_observations,
+   COUNT(\*) AS raw\_observations,
 
 
 
-&#x20;   COUNT(DISTINCT
+   COUNT(DISTINCT
 
-&#x20;       train\_line\_ride\_id
+       train\_line\_ride\_id
 
-&#x20;       || '-'
+       || '-'
 
-&#x20;       || train\_line\_station\_num::VARCHAR
+       || train\_line\_station\_num::VARCHAR
 
-&#x20;       || '-'
+       || '-'
 
-&#x20;       || COALESCE(
+       || COALESCE(
 
-&#x20;           departure\_planned\_time,
+           departure\_planned\_time,
 
-&#x20;           arrival\_planned\_time
+           arrival\_planned\_time
 
-&#x20;       )::VARCHAR
+       )::VARCHAR
 
-&#x20;   ) AS unique\_scheduled\_station\_events
+   ) AS unique\_scheduled\_station\_events
 
 
 
@@ -330,15 +330,15 @@ FROM read\_parquet('{url}')
 
 WHERE train\_line\_ride\_id IS NOT NULL
 
-&#x20; AND train\_line\_station\_num IS NOT NULL
+ AND train\_line\_station\_num IS NOT NULL
 
-&#x20; AND COALESCE(
+ AND COALESCE(
 
-&#x20;       departure\_planned\_time,
+       departure\_planned\_time,
 
-&#x20;       arrival\_planned\_time
+       arrival\_planned\_time
 
-&#x20;     ) IS NOT NULL;
+     ) IS NOT NULL;
 
 ```
 
@@ -384,37 +384,37 @@ Die Differenz von 10 Datensätzen wurde ebenfalls untersucht.
 
 SELECT
 
-&#x20;   COUNT(\*) AS rows\_without\_event\_key,
+   COUNT(\*) AS rows\_without\_event\_key,
 
 
 
-&#x20;   COUNT(\*) FILTER (
+   COUNT(\*) FILTER (
 
-&#x20;       WHERE train\_line\_ride\_id IS NULL
+       WHERE train\_line\_ride\_id IS NULL
 
-&#x20;   ) AS missing\_ride\_id,
-
-
-
-&#x20;   COUNT(\*) FILTER (
-
-&#x20;       WHERE train\_line\_station\_num IS NULL
-
-&#x20;   ) AS missing\_station\_num,
+   ) AS missing\_ride\_id,
 
 
 
-&#x20;   COUNT(\*) FILTER (
+   COUNT(\*) FILTER (
 
-&#x20;       WHERE COALESCE(
+       WHERE train\_line\_station\_num IS NULL
 
-&#x20;           departure\_planned\_time,
+   ) AS missing\_station\_num,
 
-&#x20;           arrival\_planned\_time
 
-&#x20;       ) IS NULL
 
-&#x20;   ) AS missing\_planned\_time
+   COUNT(\*) FILTER (
+
+       WHERE COALESCE(
+
+           departure\_planned\_time,
+
+           arrival\_planned\_time
+
+       ) IS NULL
+
+   ) AS missing\_planned\_time
 
 
 
@@ -422,17 +422,17 @@ FROM read\_parquet('{url}')
 
 WHERE
 
-&#x20;   train\_line\_ride\_id IS NULL
+   train\_line\_ride\_id IS NULL
 
-&#x20;   OR train\_line\_station\_num IS NULL
+   OR train\_line\_station\_num IS NULL
 
-&#x20;   OR COALESCE(
+   OR COALESCE(
 
-&#x20;       departure\_planned\_time,
+       departure\_planned\_time,
 
-&#x20;       arrival\_planned\_time
+       arrival\_planned\_time
 
-&#x20;   ) IS NULL;
+   ) IS NULL;
 
 ```
 
@@ -648,19 +648,19 @@ sondern:
 
 train\_line\_ride\_id
 
-&#x20;       ↓
+       ↓
 
 wiederkehrendes Service-/Fahrplanmuster
 
 
 
-&#x20;       ↓
+       ↓
 
 mehrere konkrete geplante Service Events
 
 
 
-&#x20;       ↓
+       ↓
 
 jeweils mehrere Station Events
 
