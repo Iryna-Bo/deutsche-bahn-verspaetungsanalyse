@@ -354,6 +354,8 @@ Die Untersuchung zeigt außerdem, dass `train_line_ride_id` nicht als eindeutige
 
 Es wurde mit Python geprüft, ob einzelne Zugfahrten aus mehreren Feldern der Daten rekonstruiert werden können. Dabei wurden unter anderem `train_number`, `train_type`, `train_line_ride_id`, `train_line_station_num` und `planned_event_time` verwendet.
 
+Der Test wurde mit einem separaten Explorationsskript durchgeführt: [`explore_route_reconstruction.py`](../scripts/explore_route_reconstruction.py).
+
 Bei einfachen Fällen funktioniert die Rekonstruktion. Zum Beispiel konnte für ICE 920 am 15.03.2025 folgende Route aus den Daten rekonstruiert werden:
 
 ```text
@@ -380,13 +382,8 @@ Route:
  17 | 2025-03-16 06:38:00 | Hamburg-Harburg | delay=53
 ```
 
-Auch **IC 2048** (Dresden Hbf → Köln Hbf) und **ICE 2500** (München Hbf → Berlin Ostbahnhof) konnten in einem einfachen Fall erfolgreich rekonstruiert werden.
+Auch **IC 2048** (Dresden Hbf → Köln Hbf) und **ICE 2500** (München Hbf → Berlin Ostbahnhof) konnten in einfachen Fällen erfolgreich rekonstruiert werden.
 
 Komplexere Fälle zeigen jedoch mehrere parallele Stationsfolgen sowie Ausfälle oder Ersatzfahrten. Diese Fälle können mit den vorhandenen Daten nicht zuverlässig voneinander getrennt werden.
 
-**Deshalb werden die Scheduled Station Events als sichere analytische Einheit für die Hauptanalyse verwendet.** Die rekonstruierten Zugverläufe dienen nur als Ergebnis der Datenprüfung und werden nicht als Grundlage für allgemeine Fahrt-level-KPIs verwendet.
-
-
-
-
-
+**Deshalb werden die Scheduled Station Events als sichere analytische Einheit für die Hauptanalyse verwendet.** Die Routenrekonstruktion wird nicht für allgemeine Fahrt-level-KPIs verwendet.
