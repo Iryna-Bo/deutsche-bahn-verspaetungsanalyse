@@ -344,13 +344,48 @@ Die nächsten Analyseschritte sind daher:
 
 ## Fazit
 
-Die Datenprüfung zeigt, dass die Rohdaten für eine detaillierte Analyse geeignet sind, die Granularität jedoch vor der KPI-Berechnung eindeutig definiert werden muss.
+Die Datenprüfung zeigt, dass die Rohdaten für eine detaillierte Analyse geeignet sind. Vor der KPI-Berechnung muss jedoch die genaue Granularität der Daten berücksichtigt werden.
 
-Für März 2025 konnten **2.004.911 eindeutige Scheduled Station Events** mit vollständiger Event-Zeit identifiziert werden. Es wurden keine Duplikate auf dieser Ebene gefunden.
+Für März 2025 konnten **2.004.911 eindeutige Scheduled Station Events** mit vollständiger Event-Zeit identifiziert werden. Auf dieser Ebene wurden keine Duplikate gefunden.
 
-Die Untersuchung zeigt außerdem, dass `train_line_ride_id` nicht als eindeutige ID einer einzelnen physischen Zugfahrt verwendet werden sollte.
+Die Untersuchung zeigt außerdem, dass `train_line_ride_id` nicht als eindeutige ID einer einzelnen physischen Zugfahrt verwendet werden kann.
 
-Die Rekonstruktion vollständiger Service Occurrences wird deshalb als separater Analyseschritt durchgeführt, bevor Fahrt-level Kennzahlen berechnet werden.
+### Test der Routenrekonstruktion
+
+Es wurde mit Python geprüft, ob einzelne Zugfahrten aus mehreren Feldern der Daten rekonstruiert werden können. Dabei wurden unter anderem `train_number`, `train_type`, `train_line_ride_id`, `train_line_station_num` und `planned_event_time` verwendet.
+
+Bei einfachen Fällen funktioniert die Rekonstruktion. Zum Beispiel konnte für ICE 920 am 15.03.2025 folgende Route aus den Daten rekonstruiert werden:
+
+```text
+ICE 920 | 2025-03-15
+========================================
+Gefundene mögliche Routen: 1
+
+ROUTE 1 | Ride ID 8503777394879306018 | 13 Station Events
+2025-03-15 23:24:00 Frankfurt (Main) Hbf -> 2025-03-16 06:38:00 Hamburg-Harburg
+
+Route:
+  1 | 2025-03-15 23:24:00 | Frankfurt (Main) Hbf | delay=1
+  3 | 2025-03-16 00:01:00 | Mainz Hbf | delay=15
+  5 | 2025-03-16 00:58:00 | Koblenz Hbf | delay=43
+  6 | 2025-03-16 02:09:00 | Köln Hbf | delay=42
+  7 | 2025-03-16 02:33:00 | Düsseldorf Hbf | delay=43
+  9 | 2025-03-16 02:51:00 | Duisburg Hbf | delay=41
+ 10 | 2025-03-16 03:04:00 | Essen Hbf | delay=40
+ 11 | 2025-03-16 03:34:00 | Dortmund Hbf | delay=39
+ 12 | 2025-03-16 03:52:00 | Hamm (Westf) Hbf | delay=40
+ 13 | 2025-03-16 04:15:00 | Münster (Westf) Hbf | delay=36
+ 14 | 2025-03-16 04:50:00 | Osnabrück Hbf | delay=38
+ 16 | 2025-03-16 05:54:00 | Bremen Hbf | delay=29
+ 17 | 2025-03-16 06:38:00 | Hamburg-Harburg | delay=53
+```
+
+Auch **IC 2048** (Dresden Hbf → Köln Hbf) und **ICE 2500** (München Hbf → Berlin Ostbahnhof) konnten in einem einfachen Fall erfolgreich rekonstruiert werden.
+
+Komplexere Fälle zeigen jedoch mehrere parallele Stationsfolgen sowie Ausfälle oder Ersatzfahrten. Diese Fälle können mit den vorhandenen Daten nicht zuverlässig voneinander getrennt werden.
+
+**Deshalb werden die Scheduled Station Events als sichere analytische Einheit für die Hauptanalyse verwendet.** Die rekonstruierten Zugverläufe dienen nur als Ergebnis der Datenprüfung und werden nicht als Grundlage für allgemeine Fahrt-level-KPIs verwendet.
+
 
 
 
