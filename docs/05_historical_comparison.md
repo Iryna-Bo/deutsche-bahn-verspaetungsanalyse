@@ -1,4 +1,4 @@
-\# KPI Analysis
+\# Historical Comparison
 
 
 
@@ -6,85 +6,41 @@
 
 
 
-Ziel der KPI-Analyse ist es, die Zuverlässigkeit des deutschen Schienenverkehrs anhand von Verspätungen und Ausfällen zu untersuchen.
+Ziel dieser Analyse ist es, die Entwicklung wichtiger Verspätungs- und Ausfallkennzahlen über verschiedene Zeiträume zu vergleichen.
 
 
 
-Die Analyse betrachtet insbesondere folgende Fragen:
+Dabei werden zwei Vergleichszeiträume betrachtet:
 
 
 
-\* Wie häufig treten Verspätungen auf?
+\* \*\*Juli–Dezember 2024 vs. Juli–Dezember 2025\*\*
 
-\* Wie unterscheiden sich Verspätungen zwischen Bahnhöfen und Zugtypen?
-
-\* Zu welchen Tageszeiten und Wochentagen treten Verspätungen häufiger auf?
-
-\* Wie häufig treten längere Verspätungen auf?
-
-\* Wie unterscheiden sich reguläre und Ersatzverkehre?
-
-\* Wie entwickelt sich die Verspätungssituation über die Monate?
-
-\* Wie unterscheiden sich ausgewählte historische Vergleichszeiträume?
+\* \*\*Januar–August 2025 vs. Januar–August 2026\*\*
 
 
 
-Die Analyse basiert auf historischen DB-Daten für 107 Bahnhöfe.
+Für die Vergleiche wird dieselbe Bahnhofskohorte mit \*\*107 Bahnhöfen\*\* verwendet.
 
 
 
-\---
+Die wichtigsten Vergleichskennzahlen sind:
 
 
 
-\## 2. Analytische Einheit
+\* Median der Verspätung
 
+\* P95 der Verspätung
 
+\* Anteil ≥5 Minuten
 
-Als zentrale analytische Einheit wird ein \*\*Scheduled Station Event\*\* verwendet.
+\* Anteil ≥15 Minuten
 
+\* Anteil ≥60 Minuten
 
+\* Ausfallanteil
 
-Ein Scheduled Station Event beschreibt ein geplantes Ankunfts- oder Abfahrtsereignis eines wiederkehrenden Zuglaufs an einer bestimmten Bahnhofposition.
-
-
-
-Die Ereigniszeit wird definiert als:
-
-
-
-```text
-
-planned\_event\_time =
-
-COALESCE(departure\_planned\_time, arrival\_planned\_time)
-
-```
-
-
-
-Die technische Identifikation eines Ereignisses basiert auf:
-
-
-
-```text
-
-train\_line\_ride\_id
-
-\+ train\_line\_station\_num
-
-\+ planned\_event\_time
-
-```
-
-
-
-Diese Einheit wurde gewählt, weil `train\_line\_ride\_id` allein keinen einzelnen physischen Zuglauf an einem bestimmten Tag identifiziert. Die Daten enthalten wiederkehrende Fahrplanmuster sowie mehrere operative Beobachtungen.
-
-
-
-Daher werden die Ergebnisse dieser Analyse als \*\*Bahnhofsevents bzw. Beobachtungen\*\* interpretiert und nicht als Anzahl physischer Zugfahrten.
+\* Anteil Ersatzverkehr
 
 
 
@@ -92,85 +48,47 @@ Daher werden die Ergebnisse dieser Analyse als \*\*Bahnhofsevents bzw. Beobachtu
 
 
 
-\## 3. KPI-Definitionen
+\## 2. Vergleich Juli–Dezember 2024 vs. Juli–Dezember 2025
 
 
 
-Für die Analyse werden robuste und klar interpretierbare Kennzahlen verwendet.
+Für einen direkten Jahresvergleich werden jeweils die Monate Juli bis Dezember betrachtet.
 
 
 
-| KPI           | Definition                                                                          |
+| KPI           | Jul–Dez 2024 | Jul–Dez 2025 | Veränderung |
 
-| ------------- | ----------------------------------------------------------------------------------- |
+| ------------- | -----------: | -----------: | ----------: |
 
-| Median        | Median der beobachteten Verspätung in Minuten                                       |
+| Median        |       1 Min. |       1 Min. |           0 |
 
-| P95           | 95. Perzentil der Verspätung                                                        |
+| P95           |      17 Min. |      20 Min. |     +3 Min. |
 
-| ≥5 Min.       | Anteil der Beobachtungen mit mindestens 5 Minuten Verspätung                        |
+| ≥5 Min.       |      20,73 % |      23,78 % |    +3,05 PP |
 
-| ≥15 Min.      | Anteil der Beobachtungen mit mindestens 15 Minuten Verspätung                       |
+| ≥15 Min.      |       6,22 % |       7,65 % |    +1,43 PP |
 
-| ≥60 Min.      | Anteil der Beobachtungen mit mindestens 60 Minuten Verspätung                       |
+| ≥60 Min.      |       0,53 % |       0,70 % |    +0,17 PP |
 
-| Ausfallanteil | Anteil der beobachteten geplanten Bahnhofsevents mit Ankunfts- oder Abfahrtsausfall |
+| Ausfallanteil |       5,31 % |       5,14 % |    −0,17 PP |
 
-| Ersatzverkehr | Anteil der Beobachtungen mit `is\_replacement\_train = true`                          |
-
-
-
-Der Median wird zusammen mit Perzentilen und Schwellenwerten verwendet, da einzelne extreme Werte die Verteilung der Verspätungen stark beeinflussen können.
+| Ersatzverkehr |       0,70 % |       0,57 % |    −0,13 PP |
 
 
 
-Die Schwellenwerte ermöglichen außerdem eine differenzierte Betrachtung kleinerer, stärkerer und sehr langer Verspätungen.
+Der Median blieb unverändert bei 1 Minute.
 
 
 
-\---
+Gleichzeitig stiegen die höheren Verspätungskennzahlen. Der Anteil der Beobachtungen mit mindestens 5 Minuten Verspätung erhöhte sich von 20,73 % auf 23,78 %. Auch bei den Schwellenwerten von 15 und 60 Minuten zeigt sich ein Anstieg.
 
 
 
-\## 4. Gesamtanalyse
+Der Ausfallanteil und der Anteil der Ersatzverkehr-Beobachtungen entwickelten sich dagegen leicht nach unten.
 
 
 
-Als Referenzmonat wurde März 2025 detailliert untersucht.
-
-
-
-Im März 2025 umfasst der Datensatz:
-
-
-
-\* \*\*2.004.921 Beobachtungen\*\*
-
-\* \*\*107 Bahnhöfe\*\*
-
-\* \*\*59 Zugtypen\*\*
-
-\* Median: \*\*1 Minute\*\*
-
-\* P95: \*\*16 Minuten\*\*
-
-\* 18,72 % der Beobachtungen mit mindestens 5 Minuten Verspätung
-
-\* 5,52 % mit mindestens 15 Minuten Verspätung
-
-\* 0,43 % mit mindestens 60 Minuten Verspätung
-
-\* 4,84 % ausgefallene geplante Bahnhofsevents
-
-\* 0,72 % Ersatzverkehr-Beobachtungen
-
-
-
-Die Verteilung zeigt, dass die typische Beobachtung nur eine geringe Abweichung vom Fahrplan aufweist. Gleichzeitig liegt ein relevanter Teil der stärkeren Verspätungen im oberen Bereich der Verteilung.
-
-
-
-Der Median von 1 Minute sollte daher nicht isoliert betrachtet werden. Die Kombination aus Median, P95 und den Verspätungsschwellen liefert ein vollständigeres Bild.
+Damit zeigen nicht alle Kennzahlen dieselbe Entwicklung.
 
 
 
@@ -178,51 +96,43 @@ Der Median von 1 Minute sollte daher nicht isoliert betrachtet werden. Die Kombi
 
 
 
-\## 5. Analyse nach Bahnhof
+\## 3. Vergleich Januar–August 2025 vs. Januar–August 2026
 
 
 
-Die Analyse umfasst alle 107 Bahnhöfe der betrachteten Daten.
+Für den zweiten Vergleich werden die Monate Januar bis August betrachtet. September 2026 wurde nicht einbezogen, da für diesen Monat zum Zeitpunkt der Analyse noch keine vollständigen historischen Daten vorlagen.
 
 
 
-Die Bahnhöfe unterscheiden sich deutlich hinsichtlich des Anteils stärkerer Verspätungen.
+| KPI           | Jan–Aug 2025 | Jan–Aug 2026 | Veränderung |
+
+| ------------- | -----------: | -----------: | ----------: |
+
+| Median        |       1 Min. |       1 Min. |           0 |
+
+| P95           |    17,5 Min. |      21 Min. |   +3,5 Min. |
+
+| ≥5 Min.       |      20,09 % |      23,02 % |    +2,93 PP |
+
+| ≥15 Min.      |       6,22 % |       8,01 % |    +1,79 PP |
+
+| ≥60 Min.      |       0,54 % |       0,80 % |    +0,26 PP |
+
+| Ausfallanteil |       4,87 % |       4,87 % |        0 PP |
+
+| Ersatzverkehr |       0,70 % |       0,55 % |    −0,15 PP |
 
 
 
-Beispiele für hohe Anteile von Beobachtungen mit mindestens 5 Minuten Verspätung im März 2025:
+Auch in diesem Vergleich blieb der Median bei 1 Minute.
 
 
 
-| Bahnhof           | Beobachtungen | ≥5 Min. | ≥15 Min. | ≥60 Min. | Ausfall |
-
-| ----------------- | ------------: | ------: | -------: | -------: | ------: |
-
-| Hamm (Westf) Hbf  |        12.568 | 40,04 % |  16,47 % |   1,49 % |  4,26 % |
-
-| Duisburg Hbf      |        22.797 | 34,24 % |  12,47 % |   1,00 % |  4,97 % |
-
-| Gelsenkirchen Hbf |        12.165 | 33,87 % |   8,75 % |   0,58 % |  3,44 % |
-
-| Stuttgart Hbf     |        46.162 | 31,97 % |   5,61 % |   0,34 % |  5,33 % |
-
-| Fulda             |         8.968 | 31,68 % |  12,96 % |   1,16 % |  4,00 % |
-
-| Osnabrück Hbf     |        10.920 | 30,31 % |  11,33 % |   0,94 % |  2,57 % |
-
-| Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  4,05 % |
+Die höheren Verspätungskennzahlen stiegen jedoch erneut an. Der Anteil der Beobachtungen mit mindestens 5 Minuten Verspätung erhöhte sich von 20,09 % auf 23,02 %. Der Anteil ab 15 Minuten stieg von 6,22 % auf 8,01 %. Bei Verspätungen ab 60 Minuten erhöhte sich der Anteil von 0,54 % auf 0,80 %.
 
 
 
-Die Ergebnisse zeigen, dass die Häufigkeit stärkerer Verspätungen zwischen den Bahnhöfen erheblich variiert.
-
-
-
-Dabei werden die Ergebnisse nicht als Qualitätsranking der Bahnhöfe interpretiert. Unterschiede in Zugangebot, Verkehrsstruktur und Anzahl der Beobachtungen können die Kennzahlen beeinflussen.
-
-
-
-Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätungskennzahlen. Deshalb werden Verspätungen und Ausfälle getrennt betrachtet.
+Der Ausfallanteil blieb dagegen mit 4,87 % in beiden Vergleichszeiträumen gleich. Der Anteil der Ersatzverkehr-Beobachtungen ging leicht zurück.
 
 
 
@@ -230,39 +140,33 @@ Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätu
 
 
 
-\## 6. Analyse nach Zugtyp
+\## 4. Zentrale Erkenntnisse
 
 
 
-Für einen stabilen Vergleich werden insbesondere die Zugtypen S, RB, RE, ICE und IC betrachtet.
+Die beiden historischen Vergleiche zeigen ein ähnliches Muster:
 
 
 
-| Zugtyp | Beobachtungen | ≥5 Min. | ≥15 Min. | ≥60 Min. | Ausfall |
+\* Der \*\*Median bleibt stabil bei 1 Minute\*\*.
 
-| ------ | ------------: | ------: | -------: | -------: | ------: |
+\* Gleichzeitig steigt der \*\*P95-Wert\*\*.
 
-| S      |       828.870 | 12,51 % |   2,01 % |   0,04 % |  6,13 % |
+\* Der Anteil der Beobachtungen mit \*\*≥5, ≥15 und ≥60 Minuten Verspätung\*\* nimmt zu.
 
-| RB     |       275.665 | 15,61 % |   3,37 % |   0,12 % |  3,72 % |
+\* Die Veränderungen sind damit vor allem im Bereich der stärkeren Verspätungen sichtbar.
 
-| RE     |       355.990 | 24,84 % |   7,89 % |   0,42 % |  3,63 % |
+\* Der \*\*Ausfallanteil entwickelt sich nicht parallel\*\* zu den Verspätungskennzahlen.
 
-| IC     |        34.501 | 36,58 % |  17,58 % |   2,12 % |  6,12 % |
-
-| ICE    |       157.366 | 40,53 % |  19,85 % |   2,40 % |  6,87 % |
+\* Auch der Anteil der Ersatzverkehr-Beobachtungen zeigt keine entsprechende Zunahme.
 
 
 
-Die betrachteten Zugtypen zeigen deutliche Unterschiede bei den Verspätungskennzahlen.
+Besonders der Vergleich Januar–August 2025 mit Januar–August 2026 zeigt, dass stärkere Verspätungen häufiger beobachtet wurden, obwohl der Median unverändert blieb.
 
 
 
-Bei ICE und IC ist insbesondere der Anteil stärkerer Verspätungen höher als bei S-, RB- und RE-Verkehren.
-
-
-
-Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, Haltemuster, Einsatzgebiet und Fahrplan. Daher werden die Unterschiede deskriptiv dargestellt und nicht als kausaler Effekt des Zugtyps interpretiert.
+Dies deutet auf eine Veränderung vor allem im oberen Bereich der Verspätungsverteilung hin. Aus den vorliegenden Daten lässt sich jedoch nicht ableiten, welche Ursachen dafür verantwortlich sind.
 
 
 
@@ -270,273 +174,109 @@ Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, 
 
 
 
-\## 7. Analyse nach Tageszeit
+\## 5. Datenlimitationen
 
 
 
-Für die zeitliche Analyse wird die geplante Ereigniszeit verwendet.
+Die historischen Vergleiche müssen im Kontext der Datenverfügbarkeit betrachtet werden.
 
 
 
-Die Ergebnisse zeigen ein unterschiedliches Muster für kleinere und sehr lange Verspätungen:
+\### Unterschiedliche Vergleichszeiträume
 
 
 
-\* Verspätungen ab 5 Minuten treten besonders häufig am späten Nachmittag und frühen Abend auf.
+Die beiden Jahresvergleiche verwenden unterschiedliche Zeiträume:
 
-\* Der höchste Anteil von ≥5 Minuten wurde um \*\*17:00 Uhr mit 23,26 %\*\* beobachtet.
 
-\* Sehr lange Verspätungen ab 60 Minuten weisen dagegen höhere Anteile in den Nachtstunden auf.
 
-\* Besonders hohe Werte zeigen sich zwischen \*\*00:00 und 03:00 Uhr\*\*.
+\* 2024 vs. 2025: Juli–Dezember
 
+\* 2025 vs. 2026: Januar–August
 
 
-Die Ergebnisse müssen nach Zugtyp und Beobachtungszahl interpretiert werden, da sich die Zusammensetzung des Verkehrs über den Tag verändert.
 
+Ein direkter Vergleich der beiden Veränderungsraten über diese unterschiedlichen Zeiträume ist daher nicht vorgesehen.
 
 
-\---
 
+\### Unvollständige Daten für 2026
 
 
-\## 8. Analyse nach Wochentag
 
+Für 2026 waren zum Zeitpunkt der Analyse historische Daten nur bis August verfügbar.
 
 
-Auch zwischen den Wochentagen zeigen sich Unterschiede.
 
+Außerdem fehlen in mehreren Monaten bekannte Zeiträume in den Quelldaten:
 
 
-Der Anteil der Beobachtungen mit mindestens 5 Minuten Verspätung lag im März 2025 bei:
 
+\* Februar 2026: 7 Stunden
 
+\* März 2026: 10 Stunden
 
-| Wochentag  | ≥5 Min. | ≥15 Min. | ≥60 Min. |
+\* April 2026: 34 Stunden
 
-| ---------- | ------: | -------: | -------: |
+\* Mai 2026: 31 Stunden
 
-| Montag     | 19,56 % |   5,72 % |   0,41 % |
+\* Juni 2026: 6 Stunden
 
-| Dienstag   | 19,82 % |   5,86 % |   0,59 % |
+\* Juli 2026: 102 Stunden
 
-| Mittwoch   | 20,85 % |   6,04 % |   0,42 % |
 
-| Donnerstag | 20,86 % |   6,11 % |   0,49 % |
 
-| Freitag    | 20,93 % |   6,15 % |   0,46 % |
+Besonders die Datenlücke im Juli ist vergleichsweise groß.
 
-| Samstag    | 15,43 % |   4,63 % |   0,34 % |
 
-| Sonntag    | 13,83 % |   4,22 % |   0,32 % |
 
+Diese fehlenden Stunden können die Anzahl und Zusammensetzung der Beobachtungen beeinflussen. Die Ergebnisse für 2026 sollten deshalb mit entsprechender Vorsicht interpretiert werden.
 
 
-Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höher als am Wochenende.
 
+\### Anzahl der Beobachtungen
 
 
-Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.
 
+Im Zeitraum Januar–August wurden folgende Beobachtungszahlen erfasst:
 
 
-\---
 
+\* 2025: \*\*15.847.467\*\*
 
+\* 2026: \*\*15.006.492\*\*
 
-\## 9. Analyse der Ersatzverkehre
 
 
+Die geringere Anzahl der Beobachtungen im Jahr 2026 darf nicht als Rückgang des Zugverkehrs oder der Anzahl der Zugfahrten interpretiert werden. Die Daten enthalten bekannte zeitliche Lücken.
 
-Die Daten enthalten seit der späteren Datenrevision ein Merkmal für Ersatzverkehre:
 
 
+\### Analytische Einheit
 
-```text
 
-is\_replacement\_train
 
-```
+Die Analyse basiert auf \*\*Scheduled Station Events\*\* und nicht auf eindeutig rekonstruierten physischen Zugfahrten.
 
 
 
-Im März 2025 wurden insgesamt \*\*14.504 Ersatzverkehr-Beobachtungen\*\* identifiziert.
+Deshalb beziehen sich die Kennzahlen auf beobachtete geplante Bahnhofsevents. Aussagen wie „X % der Züge waren verspätet“ werden aus diesen Daten nicht abgeleitet.
 
 
 
-Zum Vergleich:
+\### Keine kausalen Aussagen
 
 
 
-|                 | Reguläre Beobachtungen | Ersatzverkehr |
+Die historischen Vergleiche zeigen Veränderungen der Kennzahlen, erklären aber nicht deren Ursachen.
 
-| --------------- | ---------------------: | ------------: |
 
-| Beobachtungen   |              1.990.417 |        14.504 |
 
-| Anteil ≥5 Min.  |                18,66 % |       26,39 % |
+Mögliche externe Faktoren wie Fahrplanänderungen, Baustellen, Wetter, Infrastruktur oder Änderungen im Verkehrsangebot wurden in dieser Analyse nicht untersucht.
 
-| Anteil ≥15 Min. |                 5,47 % |       12,03 % |
 
-| Anteil ≥60 Min. |                 0,42 % |        1,59 % |
 
-
-
-Ersatzverkehr-Beobachtungen weisen damit in den betrachteten Daten höhere Anteile stärkerer Verspätungen auf.
-
-
-
-Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Aussage darüber, dass Ersatzverkehr die Ursache der höheren Verspätungen ist.
-
-
-
-Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced\_train\_number` vorhanden.
-
-
-
-\---
-
-
-
-\## 10. Monatliche Entwicklung 2025
-
-
-
-Die monatliche Entwicklung wurde für Januar bis Dezember 2025 untersucht.
-
-
-
-| Monat | P95 | ≥5 Min. | ≥15 Min. | ≥60 Min. | Ausfall | Ersatzverkehr |
-
-| ----- | --: | ------: | -------: | -------: | ------: | ------------: |
-
-| Jan   |  15 | 18,23 % |   5,39 % |   0,47 % |  4,46 % |        0,59 % |
-
-| Feb   |  16 | 18,55 % |   5,46 % |   0,43 % |  4,63 % |        0,61 % |
-
-| Mär   |  16 | 18,72 % |   5,52 % |   0,43 % |  4,84 % |        0,72 % |
-
-| Apr   |  17 | 19,86 % |   6,09 % |   0,55 % |  5,40 % |        0,92 % |
-
-| Mai   |  18 | 20,32 % |   6,34 % |   0,53 % |  4,43 % |        0,53 % |
-
-| Jun   |  20 | 21,87 % |   7,20 % |   0,68 % |  5,82 % |        0,75 % |
-
-| Jul   |  20 | 22,31 % |   7,35 % |   0,91 % |  6,26 % |        0,89 % |
-
-| Aug   |  18 | 21,26 % |   6,59 % |   0,60 % |  4,90 % |        0,67 % |
-
-| Sep   |  20 | 23,78 % |   7,58 % |   0,66 % |  5,12 % |        0,56 % |
-
-| Okt   |  22 | 26,73 % |   8,79 % |   0,74 % |  5,04 % |        0,40 % |
-
-| Nov   |  22 | 26,71 % |   8,68 % |   0,74 % |  4,80 % |        0,45 % |
-
-| Dez   |  19 | 22,11 % |   6,99 % |   0,54 % |  4,69 % |        0,46 % |
-
-
-
-Der Median blieb über das gesamte Jahr bei \*\*1 Minute\*\*.
-
-
-
-Gleichzeitig stiegen P95 und die Anteile stärkerer Verspätungen im Jahresverlauf deutlich an. Der höchste Anteil ab 5 Minuten wurde im Oktober mit \*\*26,73 %\*\* beobachtet.
-
-
-
-Die Ergebnisse zeigen somit vor allem eine Veränderung im oberen Bereich der Verspätungsverteilung, während der Median relativ stabil blieb.
-
-
-
-\---
-
-
-
-\## 11. Zentrale Erkenntnisse
-
-
-
-Aus der KPI-Analyse ergeben sich mehrere zentrale Beobachtungen:
-
-
-
-1\. \*\*Die typische Verspätung ist gering.\*\*
-
-&#x20;  Der Median liegt im untersuchten Zeitraum bei 1 Minute.
-
-
-
-2\. \*\*Stärkere Verspätungen sind deutlich häufiger als der Median allein vermuten lässt.\*\*
-
-&#x20;  P95 und die Schwellenwerte ≥5, ≥15 und ≥60 Minuten zeigen einen relevanten oberen Bereich der Verteilung.
-
-
-
-3\. \*\*Bahnhöfe unterscheiden sich deutlich.\*\*
-
-&#x20;  Der Anteil stärkerer Verspätungen variiert zwischen den untersuchten Bahnhöfen erheblich.
-
-
-
-4\. \*\*Auch zwischen Zugtypen bestehen deutliche Unterschiede.\*\*
-
-&#x20;  Besonders bei ICE und IC sind stärkere Verspätungen in den untersuchten Daten häufiger.
-
-
-
-5\. \*\*Verspätungen zeigen ein zeitliches Muster.\*\*
-
-&#x20;  Kleinere Verspätungen ab 5 Minuten treten besonders am späten Nachmittag und frühen Abend auf, während sehr lange Verspätungen häufiger in den Nachtstunden beobachtet werden.
-
-
-
-6\. \*\*Werktage weisen höhere Anteile stärkerer Verspätungen auf als Wochenenden.\*\*
-
-
-
-7\. \*\*Ersatzverkehr-Beobachtungen zeigen höhere Verspätungsanteile.\*\*
-
-&#x20;  Dieser Zusammenhang wird deskriptiv dargestellt und nicht als kausaler Zusammenhang interpretiert.
-
-
-
-8\. \*\*Die monatliche Entwicklung 2025 zeigt eine Zunahme stärkerer Verspätungen im Jahresverlauf.\*\*
-
-&#x20;  Gleichzeitig blieb der Median stabil.
-
-
-
-\---
-
-
-
-\## 12. Limitationen
-
-
-
-Die Ergebnisse sind deskriptiv und erlauben keine Aussage über die Ursachen der beobachteten Verspätungen oder Ausfälle.
-
-
-
-Weitere wichtige Einschränkungen:
-
-
-
-\* Die Daten enthalten Beobachtungen auf Ebene geplanter Bahnhofsevents und nicht eindeutig identifizierte physische Zugfahrten.
-
-\* `train\_line\_ride\_id` beschreibt wiederkehrende Fahrplanmuster und darf nicht direkt als Anzahl einzelner Zugfahrten interpretiert werden.
-
-\* Sehr große negative Werte in `delay\_in\_min` wurden als Data-Quality-Thema untersucht und nicht ohne weitere Validierung aus den Rohdaten entfernt.
-
-\* Die Analyse verwendet deshalb robuste Kennzahlen wie Median, P95 und Schwellenwerte anstelle eines einzelnen Durchschnittswerts.
-
-\* Die Daten enthalten unterschiedliche Verkehrsstrukturen nach Bahnhof, Zugtyp und Tageszeit. Direkte Vergleiche müssen daher im jeweiligen Kontext interpretiert werden.
-
-
-
-
-
-Die Rohdaten wurden für die Analyse nicht verändert. Datenqualitätsprobleme und strukturelle Einschränkungen werden transparent dokumentiert und bei der Interpretation der Ergebnisse berücksichtigt.
+Die Ergebnisse sind daher als \*\*deskriptive historische Analyse\*\* zu verstehen.
 
 
 
