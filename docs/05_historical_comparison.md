@@ -1,8 +1,8 @@
-\# Historical Comparison
+# Historical Comparison
 
 
 
-\## 1. Ziel der Analyse
+## 1. Ziel der Analyse
 
 
 
@@ -14,13 +14,13 @@ Dabei werden zwei Vergleichszeiträume betrachtet:
 
 
 
-\* \*\*Juli–Dezember 2024 vs. Juli–Dezember 2025\*\*
+* **Juli–Dezember 2024 vs. Juli–Dezember 2025**
 
-\* \*\*Januar–August 2025 vs. Januar–August 2026\*\*
+* **Januar–August 2025 vs. Januar–August 2026**
 
 
 
-Für die Vergleiche wird dieselbe Bahnhofskohorte mit \*\*107 Bahnhöfen\*\* verwendet.
+Für die Vergleiche wird dieselbe Bahnhofskohorte mit **107 Bahnhöfen** verwendet.
 
 
 
@@ -28,27 +28,27 @@ Die wichtigsten Vergleichskennzahlen sind:
 
 
 
-\* Median der Verspätung
+* Median der Verspätung
 
-\* P95 der Verspätung
+* P95 der Verspätung
 
-\* Anteil ≥5 Minuten
+* Anteil ≥5 Minuten
 
-\* Anteil ≥15 Minuten
+* Anteil ≥15 Minuten
 
-\* Anteil ≥60 Minuten
+* Anteil ≥60 Minuten
 
-\* Ausfallanteil
+* Ausfallanteil
 
-\* Anteil Ersatzverkehr
-
-
-
-\---
+* Anteil Ersatzverkehr
 
 
 
-\## 2. Vergleich Juli–Dezember 2024 vs. Juli–Dezember 2025
+---
+
+
+
+## 2. Vergleich Juli–Dezember 2024 vs. Juli–Dezember 2025
 
 
 
@@ -92,11 +92,11 @@ Damit zeigen nicht alle Kennzahlen dieselbe Entwicklung.
 
 
 
-\---
+---
 
 
 
-\## 3. Vergleich Januar–August 2025 vs. Januar–August 2026
+## 3. Vergleich Januar–August 2025 vs. Januar–August 2026
 
 
 
@@ -136,11 +136,11 @@ Der Ausfallanteil blieb dagegen mit 4,87 % in beiden Vergleichszeiträumen gleic
 
 
 
-\---
+---
 
 
 
-\## 4. Zentrale Erkenntnisse
+## 4. Zentrale Erkenntnisse
 
 
 
@@ -148,17 +148,17 @@ Die beiden historischen Vergleiche zeigen ein ähnliches Muster:
 
 
 
-\* Der \*\*Median bleibt stabil bei 1 Minute\*\*.
+* Der **Median bleibt stabil bei 1 Minute**.
 
-\* Gleichzeitig steigt der \*\*P95-Wert\*\*.
+* Gleichzeitig steigt der **P95-Wert**.
 
-\* Der Anteil der Beobachtungen mit \*\*≥5, ≥15 und ≥60 Minuten Verspätung\*\* nimmt zu.
+* Der Anteil der Beobachtungen mit **≥5, ≥15 und ≥60 Minuten Verspätung** nimmt zu.
 
-\* Die Veränderungen sind damit vor allem im Bereich der stärkeren Verspätungen sichtbar.
+* Die Veränderungen sind damit vor allem im Bereich der stärkeren Verspätungen sichtbar.
 
-\* Der \*\*Ausfallanteil entwickelt sich nicht parallel\*\* zu den Verspätungskennzahlen.
+* Der **Ausfallanteil entwickelt sich nicht parallel** zu den Verspätungskennzahlen.
 
-\* Auch der Anteil der Ersatzverkehr-Beobachtungen zeigt keine entsprechende Zunahme.
+* Auch der Anteil der Ersatzverkehr-Beobachtungen zeigt keine entsprechende Zunahme.
 
 
 
@@ -170,11 +170,11 @@ Dies deutet auf eine Veränderung vor allem im oberen Bereich der Verspätungsve
 
 
 
-\---
+---
 
 
 
-\## 5. Datenlimitationen
+## 5. Datenlimitationen
 
 
 
@@ -182,7 +182,7 @@ Die historischen Vergleiche müssen im Kontext der Datenverfügbarkeit betrachte
 
 
 
-\### Unterschiedliche Vergleichszeiträume
+### Unterschiedliche Vergleichszeiträume
 
 
 
@@ -190,9 +190,9 @@ Die beiden Jahresvergleiche verwenden unterschiedliche Zeiträume:
 
 
 
-\* 2024 vs. 2025: Juli–Dezember
+* 2024 vs. 2025: Juli–Dezember
 
-\* 2025 vs. 2026: Januar–August
+* 2025 vs. 2026: Januar–August
 
 
 
@@ -200,7 +200,7 @@ Ein direkter Vergleich der beiden Veränderungsraten über diese unterschiedlich
 
 
 
-\### Unvollständige Daten für 2026
+### Unvollständige Daten für 2026
 
 
 
@@ -212,17 +212,17 @@ Außerdem fehlen in mehreren Monaten bekannte Zeiträume in den Quelldaten:
 
 
 
-\* Februar 2026: 7 Stunden
+* Februar 2026: 7 Stunden
 
-\* März 2026: 10 Stunden
+* März 2026: 10 Stunden
 
-\* April 2026: 34 Stunden
+* April 2026: 34 Stunden
 
-\* Mai 2026: 31 Stunden
+* Mai 2026: 31 Stunden
 
-\* Juni 2026: 6 Stunden
+* Juni 2026: 6 Stunden
 
-\* Juli 2026: 102 Stunden
+* Juli 2026: 102 Stunden
 
 
 
@@ -234,7 +234,7 @@ Diese fehlenden Stunden können die Anzahl und Zusammensetzung der Beobachtungen
 
 
 
-\### Anzahl der Beobachtungen
+### Anzahl der Beobachtungen
 
 
 
@@ -242,9 +242,9 @@ Im Zeitraum Januar–August wurden folgende Beobachtungszahlen erfasst:
 
 
 
-\* 2025: \*\*15.847.467\*\*
+* 2025: **15.847.467**
 
-\* 2026: \*\*15.006.492\*\*
+* 2026: **15.006.492**
 
 
 
@@ -252,11 +252,11 @@ Die geringere Anzahl der Beobachtungen im Jahr 2026 darf nicht als Rückgang des
 
 
 
-\### Analytische Einheit
+### Analytische Einheit
 
 
 
-Die Analyse basiert auf \*\*Scheduled Station Events\*\* und nicht auf eindeutig rekonstruierten physischen Zugfahrten.
+Die Analyse basiert auf **Scheduled Station Events** und nicht auf eindeutig rekonstruierten physischen Zugfahrten.
 
 
 
@@ -266,7 +266,7 @@ Deshalb beziehen sich die Kennzahlen auf beobachtete geplante Bahnhofsevents. Au
 
 
 
-\### Keine kausalen Aussagen
+### Keine kausalen Aussagen
 
 
 
@@ -278,5 +278,5 @@ Mögliche externe Faktoren wie Fahrplanänderungen, Baustellen, Wetter, Infrastr
 
 
 
-Die Ergebnisse sind daher als \*\*deskriptive historische Analyse\*\* zu verstehen.
+Die Ergebnisse sind daher als **deskriptive historische Analyse** zu verstehen.
 
