@@ -264,6 +264,8 @@ Deshalb beziehen sich die Kennzahlen auf beobachtete geplante Bahnhofsevents. Au
 
 
 
+
+
 \### Keine kausalen Aussagen
 
 
@@ -277,6 +279,4 @@ Mögliche externe Faktoren wie Fahrplanänderungen, Baustellen, Wetter, Infrastr
 
 
 Die Ergebnisse sind daher als \*\*deskriptive historische Analyse\*\* zu verstehen.
-
-
 
