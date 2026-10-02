@@ -1,0 +1,11 @@
+metric,value
+rows_loaded,1652392.0
+rows_after_negative_filter,1613089.0
+anova_F,31542.436908965636
+anova_p_value,0.0
+kruskal_H,55150.52552845922
+kruskal_p_value,0.0
+eta_squared,0.07254246127533884
+chi_square,136185.24659753972
+chi_square_p_value,0.0
+cramers_v,0.14528001308175445
