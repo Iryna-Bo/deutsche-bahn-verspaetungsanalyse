@@ -291,7 +291,7 @@ Das zeigt, dass sich die Zugtypen vor allem bei den stärkeren Verspätungen unt
 ### Abbildung: Verteilung der Verspätungen nach Zugtyp
 
 
-<img src="results/statistical_analysis/plots/01_delay_distribution_by_train_type.png" alt="Delay distribution by train type" width="600" high="400"/>
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/results/statistical_analysis/plots/01_delay_distribution_by_train_type.png" alt="Delay distribution by train type" width="600" high="400"/>
 
 
 
@@ -339,7 +339,7 @@ Die Konfidenzintervalle sind aufgrund der großen Stichproben relativ eng. Dadur
 
 
 
-<img src="results/statistical_analysis/plots/03_confidence_intervals_ge5.png" alt="Confidence intervals" width="600" high="400"/>
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/results/statistical_analysis/plots/03_confidence_intervals_ge5.png" alt="Confidence intervals" width="600" high="400"/>
 
 
 
@@ -385,7 +385,7 @@ Cramér's V zeigt gleichzeitig, dass der Zusammenhang nicht sehr stark ist. Der 
 
 
 
-<img src="results/statistical_analysis/plots/02_delay_categories_by_train_type.png" alt="Delay categories by train type" width="600" high="400"/>
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/results/statistical_analysis/plots/02_delay_categories_by_train_type.png" alt="Delay categories by train type" width="600" high="400"/>
 
 
 
