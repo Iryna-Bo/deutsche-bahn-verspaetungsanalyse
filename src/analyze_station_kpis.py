@@ -15,8 +15,13 @@ WITH base AS (
         delay_in_min,
         arrival_is_canceled,
         departure_is_canceled
-    FROM read_parquet('{URL}')
-    WHERE delay_in_min IS NOT NULL
+    FROM read_parquet(
+        'https://huggingface.co/datasets/piebro/deutsche-bahn-data/resolve/main/monthly_processed_data/data-2025-03.parquet'
+    )
+    WHERE COALESCE(
+        departure_planned_time,
+        arrival_planned_time
+    ) IS NOT NULL
 ),
 
 station_kpis AS (
