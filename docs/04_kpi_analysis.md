@@ -90,6 +90,16 @@ Der Median von 1 Minute sollte daher nicht isoliert betrachtet werden. Die Kombi
 
 ## 5. Analyse nach Bahnhof
 
+Die vollständigen Stations-Ranglisten und die Übersicht sind in der
+[historischen Stationsübersicht](../results/historical/plots/03g_station_kpi_overview_all_thresholds.png)
+verfügbar. Die sechs ergänzenden Top-/Bottom-Ranglisten liegen im selben
+Ordner: [≥5 Top](../results/historical/plots/03a_station_kpis_highest_5plus.png),
+[≥5 Bottom](../results/historical/plots/03b_station_kpis_lowest_5plus.png),
+[≥15 Top](../results/historical/plots/03c_station_kpis_highest_15plus.png),
+[≥15 Bottom](../results/historical/plots/03d_station_kpis_lowest_15plus.png),
+[≥60 Top](../results/historical/plots/03e_station_kpis_highest_60plus.png) und
+[≥60 Bottom](../results/historical/plots/03f_station_kpis_lowest_60plus.png).
+
 Die Analyse umfasst alle 107 Bahnhöfe der betrachteten Daten.
 
 Die Bahnhöfe unterscheiden sich deutlich hinsichtlich des Anteils stärkerer Verspätungen.
@@ -98,13 +108,13 @@ Beispiele für hohe Anteile von Beobachtungen mit mindestens 5 Minuten Verspätu
 
 | Bahnhof           | Beobachtungen | ≥5 Min. | ≥15 Min. | ≥60 Min. | Ausfall |
 | ----------------- | ------------: | ------: | -------: | -------: | ------: |
-| Hamm (Westf) Hbf  |        12.568 | 40,04 % |  16,47 % |   1,49 % |  4,26 % |
-| Duisburg Hbf      |        22.797 | 34,24 % |  12,47 % |   1,00 % |  4,97 % |
-| Gelsenkirchen Hbf |        12.165 | 33,87 % |   8,75 % |   0,58 % |  3,44 % |
-| Stuttgart Hbf     |        46.162 | 31,97 % |   5,61 % |   0,34 % |  5,33 % |
-| Fulda             |         8.968 | 31,68 % |  12,96 % |   1,16 % |  4,00 % |
-| Osnabrück Hbf     |        10.920 | 30,31 % |  11,33 % |   0,94 % |  2,57 % |
-| Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  4,05 % |
+| Hamm (Westf) Hbf  |        12.568 | 40,04 % |  16,47 % |   1,49 % |  4,02 % |
+| Duisburg Hbf      |        22.797 | 34,24 % |  12,47 % |   1,00 % |  4,78 % |
+| Gelsenkirchen Hbf |        12.165 | 33,87 % |   8,75 % |   0,58 % |  3,15 % |
+| Stuttgart Hbf     |        46.162 | 31,97 % |   5,61 % |   0,34 % |  5,00 % |
+| Fulda             |         8.968 | 31,68 % |  12,96 % |   1,16 % |  3,88 % |
+| Osnabrück Hbf     |        10.920 | 30,31 % |  11,33 % |   0,94 % |  2,45 % |
+| Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  3,90 % |
 
 Die Ergebnisse zeigen, dass die Häufigkeit stärkerer Verspätungen zwischen den Bahnhöfen erheblich variiert.
 
@@ -114,23 +124,27 @@ Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätu
 
 ---
 
-## 6. Analyse nach Zugtyp
+## 6. Analyse nach Zugtyp  
 
 Für einen stabilen Vergleich werden insbesondere die Zugtypen S, RB, RE, ICE und IC betrachtet.
 
 | Zugtyp | Beobachtungen | ≥5 Min. | ≥15 Min. | ≥60 Min. | Ausfall |
 | ------ | ------------: | ------: | -------: | -------: | ------: |
-| S      |       828.870 | 12,51 % |   2,01 % |   0,04 % |  6,13 % |
-| RB     |       275.665 | 15,61 % |   3,37 % |   0,12 % |  3,72 % |
-| RE     |       355.990 | 24,84 % |   7,89 % |   0,42 % |  3,63 % |
-| IC     |        34.501 | 36,58 % |  17,58 % |   2,12 % |  6,12 % |
-| ICE    |       157.366 | 40,53 % |  19,85 % |   2,40 % |  6,87 % |
+| S      |       828.870 | 12,51 % |   2,01 % |   0,04 % |  5,33 % |
+| RB     |       275.665 | 15,61 % |   3,37 % |   0,12 % |  3,57 % |
+| RE     |       355.990 | 24,84 % |   7,89 % |   0,42 % |  3,48 % |
+| IC     |        34.501 | 36,58 % |  17,58 % |   2,12 % |  5,93 % |
+| ICE    |       157.366 | 40,53 % |  19,85 % |   2,40 % |  6,62 % |
 
 Die betrachteten Zugtypen zeigen deutliche Unterschiede bei den Verspätungskennzahlen.
 
 Bei ICE und IC ist insbesondere der Anteil stärkerer Verspätungen höher als bei S-, RB- und RE-Verkehren.
 
-Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, Haltemuster, Einsatzgebiet und Fahrplan. Daher werden die Unterschiede deskriptiv dargestellt und nicht als kausaler Effekt des Zugtyps interpretiert.
+Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, Haltemuster, Einsatzgebiet und Fahrplan. Daher werden die Unterschiede deskriptiv dargestellt und nicht als kausaler Effekt des Zugtyps interpretiert.  
+
+Die KPI-Auswertung nach Zugtypen wurde mit DuckDB SQL durchgeführt: [SQL-Abfrage – Train Type KPI Analysis](../sql/train_type_kpi_analysis.sql)  
+
+[Python-Skript – Train Type KPI Analysis](../src/train_type_kpi_analysis.py)  
 
 ---
 
@@ -199,6 +213,12 @@ Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_tra
 ---
 
 ## 10. Monatliche Entwicklung 2025
+
+Die monatlichen Ergebnisse sind zusätzlich als
+[median und P95](../results/historical/plots/monthly_delay_distribution_2025.png),
+[delay thresholds](../results/historical/plots/monthly_delay_thresholds_2025.png)
+und [cancellation/replacement shares](../results/historical/plots/monthly_cancellations_replacement_2025.png)
+visualisiert.
 
 Die monatliche Entwicklung wurde für Januar bis Dezember 2025 untersucht.
 
