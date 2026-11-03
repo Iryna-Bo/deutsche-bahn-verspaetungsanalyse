@@ -190,55 +190,48 @@ Gleichzeitig bedeutet der Wert auch, dass der Zugtyp nur einen Teil der Untersch
 
 
 
-### 5. Tukey HSD
+### 5. Post-hoc-Analyse: Tukey HSD
+
+Nach der ANOVA wurde der **Tukey-HSD-Test (Honestly Significant Difference)** durchgeführt.
+
+Die ANOVA zeigt, ob es insgesamt statistisch signifikante Unterschiede zwischen den Gruppen gibt. Sie zeigt jedoch nicht, **zwischen welchen Zugtypen** diese Unterschiede bestehen.
+
+Der Tukey-HSD-Test ermöglicht deshalb einen paarweisen Vergleich aller fünf Zugtypen. Dabei werden die Mittelwerte der einzelnen Gruppen miteinander verglichen und die Ergebnisse für multiple Vergleiche korrigiert. Dadurch wird das Risiko reduziert, zufällig signifikante Unterschiede zu finden.
+
+#### Ergebnisse der paarweisen Vergleiche
+
+Alle zehn möglichen Paarvergleiche waren statistisch signifikant (p-adj < 0,001). Die Konfidenzintervalle aller Vergleiche schließen den Wert 0 nicht ein. Damit unterscheiden sich die mittleren Verspätungen aller fünf Zugtypen statistisch signifikant voneinander.
+
+| Vergleich | Mittlere Differenz (Min.) |
+|---|---:|
+| IC – ICE | +1,20 |
+| IC – RB | −5,88 |
+| IC – RE | −4,06 |
+| IC – S | −6,38 |
+| ICE – RB | −7,08 |
+| ICE – RE | −5,25 |
+| ICE – S | −7,58 |
+| RB – RE | +1,82 |
+| RB – S | −0,51 |
+| RE – S | −2,33 |
 
 
+Die größten Unterschiede zeigen sich zwischen **ICE und S-Bahn (S)** sowie zwischen **ICE und Regionalbahn (RB)**.  
 
-Nach der ANOVA wurde der Tukey-HSD-Test durchgeführt.
+- **ICE – S-Bahn:** Die mittlere Verspätung der ICE-Züge liegt um etwa 7,58 Minuten höher als die der S-Bahn. Das 95%-Konfidenzintervall liegt zwischen 7,52 und 7,64 Minuten. Dies weist auf einen deutlichen und statistisch signifikanten Unterschied zwischen beiden Zugtypen hin.  
 
+- **ICE – Regionalbahn (RB):** Die mittlere Verspätung der ICE-Züge liegt um etwa 7,08 Minuten höher als die der Regionalbahn. Auch hier zeigt das Konfidenzintervall (7,00 bis 7,15 Minuten) einen statistisch signifikanten Unterschied.  
 
+Ein weiterer interessanter Vergleich ist **IC – ICE**. Obwohl sich beide Zugtypen im Fernverkehr befinden, beträgt die mittlere Differenz nur etwa 1,20 Minuten. Der Unterschied ist statistisch signifikant, aber deutlich kleiner als bei den Vergleichen zwischen Fern- und Regionalverkehr.  
 
-Der Grund dafür ist, dass die ANOVA nur zeigt, dass es irgendwo Unterschiede zwischen den Gruppen gibt. Sie zeigt aber nicht, **zwischen welchen Zugtypen** diese Unterschiede liegen.
-
-
-
-Der Tukey-Test vergleicht deshalb die einzelnen Paare.
-
+Die kleinste mittlere Differenz zeigt sich zwischen **RB und S-Bahn** mit etwa 0,51 Minuten. Auch dieser Unterschied ist statistisch signifikant.  
 
 
-Alle zehn möglichen Paarvergleiche waren statistisch signifikant:
+Die Ergebnisse zeigen, dass sich die mittleren Verspätungen zwischen allen fünf untersuchten Zugtypen statistisch signifikant unterscheiden. Besonders große Unterschiede bestehen zwischen dem Fernverkehr (ICE, IC) und dem Regionalverkehr (RB, RE, S).  
 
+Es ist jedoch wichtig zu beachten, dass **statistische Signifikanz nicht automatisch praktische Relevanz bedeutet**. Bei einer sehr großen Stichprobe können auch kleine Unterschiede statistisch signifikant sein.  
 
-
-* IC – ICE
-
-* IC – RB
-
-* IC – RE
-
-* IC – S
-
-* ICE – RB
-
-* ICE – RE
-
-* ICE – S
-
-* RB – RE
-
-* RB – S
-
-* RE – S
-
-
-
-Damit unterscheiden sich in dieser Stichprobe alle fünf betrachteten Zugtypen statistisch voneinander.
-
-
-
-Die Ergebnisse zeigen jedoch nur einen statistischen Zusammenhang. Sie beweisen nicht, dass der Zugtyp selbst die Ursache für die unterschiedlichen Verspätungen ist.
-
-
+Die Ergebnisse zeigen einen statistischen Zusammenhang zwischen Zugtyp und Verspätung. Sie beweisen jedoch nicht, dass der Zugtyp selbst die Ursache für die unterschiedlichen Verspätungen ist.  
 
 ---
 
@@ -379,6 +372,9 @@ Der Test zeigt einen statistisch signifikanten Zusammenhang zwischen dem Zugtyp 
 
 Cramér's V zeigt gleichzeitig, dass der Zusammenhang nicht sehr stark ist. Der Zugtyp ist daher ein relevanter Faktor, erklärt aber nicht allein die Verspätung.
 
+Im Power-BI-Dashboard wird diese Verteilung zusätzlich als prozentuale Anteile
+je Zugtyp visualisiert.
+
 
 
 ### Abbildung: Verspätungskategorien nach Zugtyp
@@ -513,7 +509,19 @@ Die Zugtypen unterscheiden sich in ihrer Funktion und ihrem Betriebsmodell. Ein 
 
 
 
-Die Analyse untersucht Zusammenhänge zwischen Zugtyp und Verspätungen. Sie ist nicht dafür geeignet, kausale Ursachen für Verspätungen zu bestimmen.
+Die Analyse untersucht Zusammenhänge zwischen Zugtyp und Verspätungen. Sie ist nicht dafür geeignet, kausale Ursachen für Verspätungen zu bestimmen.  
+
+
+
+
+### Visualisierung statistischer Analysen 
+ 
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Statistik_März2025.png" alt="Statistik_März2025" width="1000" high="800"/>  
+
+
+Siehe auch Dashboard in Power BI → [Historical Analysis](dashboard/historical_analysis/historical_analysis.pbix")  
+
 
 
 
