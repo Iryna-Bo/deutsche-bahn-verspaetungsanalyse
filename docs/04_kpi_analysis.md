@@ -120,7 +120,11 @@ Die Ergebnisse zeigen, dass die Häufigkeit stärkerer Verspätungen zwischen de
 
 Dabei werden die Ergebnisse nicht als Qualitätsranking der Bahnhöfe interpretiert. Unterschiede in Zugangebot, Verkehrsstruktur und Anzahl der Beobachtungen können die Kennzahlen beeinflussen.
 
-Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätungskennzahlen. Deshalb werden Verspätungen und Ausfälle getrennt betrachtet.
+Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätungskennzahlen. Deshalb werden Verspätungen und Ausfälle getrennt betrachtet.  
+
+[SQL-Abfrage – Train Type KPI Analysis](../sql/station_kpi_analysis.sql)  
+
+[Python-Skript – Train Type KPI Analysis](../src/analyze_station_kpis.py)  
 
 ---
 
@@ -144,7 +148,7 @@ Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, 
 
 Die KPI-Auswertung nach Zugtypen wurde mit DuckDB SQL durchgeführt: [SQL-Abfrage – Train Type KPI Analysis](../sql/train_type_kpi_analysis.sql)  
 
-[Python-Skript – Train Type KPI Analysis](../src/train_type_kpi_analysis.py)  
+[Python-Skript – Train Type KPI Analysis](../src/analyze_train_type_kpis.py)  
 
 ---
 
