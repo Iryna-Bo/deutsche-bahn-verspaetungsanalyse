@@ -1,4 +1,4 @@
-# Statistical Analysis – Train Type and Delays
+# Statistische Analyse – Zugtyp und Verspätungen
 
 
 
@@ -517,11 +517,18 @@ Die Analyse untersucht Zusammenhänge zwischen Zugtyp und Verspätungen. Sie ist
 ### Visualisierung statistischer Analysen 
  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Statistik_März2025.png" alt="Statistik_März2025" width="1000" high="800"/>  
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Statistik_03_2025.png" alt="Statistik_03_2025" width="1000" high="800"/>    
 
 
-Siehe auch Dashboard in Power BI → [Historical Analysis](dashboard/historical_analysis/historical_analysis.pbix")  
+Siehe auch Dashboard in Power BI → [Historical Analysis](https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/dashboard/historical_analysis/historical_analysis.pbix")  
 
+
+## Reproduzierbarkeit  
+
+Die Analyse kann mithilfe der folgenden Skripte nachvollzogen und reproduziert werden:  
+
+- [Python-Skript – Statistische Analyse](../src/analyze_statistical_tests.py)  
+- [SQL-Abfrage – Datenextraktion](../sql/statistical_analysis.sql)      
 
 
 
