@@ -1,0 +1,3 @@
+service_group,service_group_de,observations,delay_5_plus_pct,delay_15_plus_pct,delay_60_plus_pct
+regular,Reguläre Beobachtungen,1990417,18.66,5.47,0.42
+replacement,Ersatzverkehr,14504,26.39,12.03,1.59

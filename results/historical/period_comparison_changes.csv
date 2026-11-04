@@ -1,0 +1,13 @@
+comparison,metric,change,unit
+Jul-Dec 2024 vs Jul-Dec 2025,p95,3.0,minutes
+Jul-Dec 2024 vs Jul-Dec 2025,delay_5_plus_pct,3.0500000000000007,percentage_points
+Jul-Dec 2024 vs Jul-Dec 2025,delay_15_plus_pct,1.4300000000000006,percentage_points
+Jul-Dec 2024 vs Jul-Dec 2025,delay_60_plus_pct,0.16999999999999993,percentage_points
+Jul-Dec 2024 vs Jul-Dec 2025,cancellation_pct,-0.16999999999999993,percentage_points
+Jul-Dec 2024 vs Jul-Dec 2025,replacement_pct,-0.13,percentage_points
+Jan-Aug 2025 vs Jan-Aug 2026,p95,3.5,minutes
+Jan-Aug 2025 vs Jan-Aug 2026,delay_5_plus_pct,2.9299999999999997,percentage_points
+Jan-Aug 2025 vs Jan-Aug 2026,delay_15_plus_pct,1.79,percentage_points
+Jan-Aug 2025 vs Jan-Aug 2026,delay_60_plus_pct,0.26,percentage_points
+Jan-Aug 2025 vs Jan-Aug 2026,cancellation_pct,0.0,percentage_points
+Jan-Aug 2025 vs Jan-Aug 2026,replacement_pct,-0.1499999999999999,percentage_points

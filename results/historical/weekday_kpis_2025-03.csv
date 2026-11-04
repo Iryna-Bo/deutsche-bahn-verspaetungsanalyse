@@ -1,0 +1,8 @@
+weekday_order,weekday,delay_5_plus_pct,delay_15_plus_pct,delay_60_plus_pct
+1,Montag,19.56,5.72,0.41
+2,Dienstag,19.82,5.86,0.59
+3,Mittwoch,20.85,6.04,0.42
+4,Donnerstag,20.86,6.11,0.49
+5,Freitag,20.93,6.15,0.46
+6,Samstag,15.43,4.63,0.34
+7,Sonntag,13.83,4.22,0.32

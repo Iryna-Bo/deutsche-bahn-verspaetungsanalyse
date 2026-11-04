@@ -107,6 +107,7 @@ Beispiele für hohe Anteile von Beobachtungen mit mindestens 5 Minuten Verspätu
 | Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  3,90 % |  
 
 
+
 <img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Stationen_03_2025.png" alt="Stationen_03_2025" width="1000" high="800"/>    
 
 
@@ -163,7 +164,7 @@ Für die zeitliche Analyse wird die geplante Ereigniszeit verwendet.
 * Die Auswertung der Zeitintervalle ermöglicht einen differenzierteren Vergleich der Verspätungskennzahlen zwischen den Zugtypen.
 * Die Ergebnisse zeigen, dass Verspätungen nicht gleichmäßig über den Tag verteilt sind und sowohl die Tageszeit als auch der Zugtyp bei der deskriptiven Analyse berücksichtigt werden sollten. 
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Tageszeit_Zugtyp.png" alt="Tageszeit_Zugtyp_03_2025" width="500" high="280"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Tageszeit_Zugtyp_03_2025.png" alt="Tageszeit_Zugtyp_03_2025" width="500" high="280"/>    
 
 
 ---
@@ -188,7 +189,7 @@ Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höh
 
 Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatung_nach_Wochentag_03_2025.png" alt="Verspätung_nach_Wochentag_03_2025" width="800" high="200"/>     
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatung_nach_Wochentag_03_2025.png" alt="Verspätung_nach_Wochentag_03_2025" width="400" high="100"/>     
 
  
 ---  
@@ -218,7 +219,7 @@ Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Au
 
 Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="300" high="800"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="150" high="400"/>    
 
 
 ---
@@ -255,7 +256,7 @@ Gleichzeitig stiegen P95 und die Anteile stärkerer Verspätungen im Jahresverla
 Die Ergebnisse zeigen somit vor allem eine Veränderung im oberen Bereich der Verspätungsverteilung, während der Median relativ stabil blieb.  
 
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Monatliche_Trends_2025.png" alt="Ersatzverkehr_03_2025" width="600" high="400"/>  
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Monatliche_Trends_2025.png" alt="Ersatzverkehr_03_2025" width="800" high="600"/>  
 
 
 ---
@@ -287,7 +288,10 @@ Aus der KPI-Analyse ergeben sich mehrere zentrale Beobachtungen:
    Dieser Zusammenhang wird deskriptiv dargestellt und nicht als kausaler Zusammenhang interpretiert.
 
 9. **Die monatliche Entwicklung 2025 zeigt eine Zunahme stärkerer Verspätungen im Jahresverlauf.**
-   Gleichzeitig blieb der Median stabil.  
+   Gleichzeitig blieb der Median stabil.   
+
+
+**Im Detail:**  
 
 Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
 [SQL-Abfragen](../sql/)  
