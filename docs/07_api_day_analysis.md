@@ -7,7 +7,17 @@ Analyse einer 24-stündigen Sammlung von DB-API-Snapshots, um die Datenqualität
 Die Untersuchung besteht aus zwei Teilen:
 
 1. **Snapshot-Qualitätsanalyse:** Bewertung der Vollständigkeit, Datenstruktur, Zeitstempel und weiteren Qualitätsmerkmalen der erfassten API-Daten.
-2. **Analyse der Ereignisentwicklung:** Untersuchung, wie sich die angezeigten Verspätungen identifizierbarer Zugereignisse zwischen mehreren Snapshots verändern.
+2. **Analyse der Ereignisentwicklung:** Untersuchung, wie sich die angezeigten Verspätungen identifizierbarer Zugereignisse zwischen mehreren Snapshots verändern.  
+
+## Automatisierte Datenerhebung
+
+Die Daten werden über die **Deutsche Bahn Timetables API** abgerufen. Erfasst werden Fahrplaninformationen und aktuelle Änderungen für sechs ausgewählte Bahnhöfe: Frankfurt (Main) Hbf, Mannheim Hbf, Stuttgart Hbf, Köln Hbf, Hamburg Hbf und Berlin Hbf.
+
+Die Datenerhebung erfolgt automatisiert alle zehn Minuten über **cron-job.org** und **GitHub Actions**. cron-job.org löst über die GitHub REST API einen Workflow im Repository aus, der ein Python-Skript zum Abruf und zur Speicherung der Daten ausführt.
+
+Die Daten werden im **Parquet-Format** mit einem Zeitstempel gespeichert. Die so entstehenden Momentaufnahmen bilden die Grundlage für die Analyse der Datenqualität und der zeitlichen Entwicklung der angezeigten Verspätungen.
+
+**Technologien:** Python, Deutsche Bahn Timetables API, GitHub Actions, GitHub REST API, cron-job.org, Parquet
 
 ## Datensammlung
 

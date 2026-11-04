@@ -115,6 +115,19 @@ deutsche-bahn-verspaetungsanalyse/
 └── .gitignore
 ```
 
+## Historical visualizations
+
+See [docs/08_historical_visualizations.md](docs/08_historical_visualizations.md) for the remote DuckDB pipeline, pinned Hugging Face revision, cohort definition, outputs, and limitations. The script writes generated tables and plots under `results/historical/` and `results/historical/plots/` without storing raw Parquet files locally.  
+
+### Statistische Analyse
+
+Die statistische Analyse wurde mit Python, SciPy und Statsmodels durchgeführt. DuckDB SQL wurde für die Datenextraktion verwendet.
+
+- [Python-Skript – Statistische Analyse](src/analyze_statistical_tests.py)
+- [SQL-Abfrage – Datenextraktion](sql/statistical_analysis.sql)
+- [Dokumentation der statistischen Analyse](docs/06_statistical_analysis.md)  
+
+
 ## Aktueller Projektstatus
 
 Das Projekt befindet sich in der Entwicklungsphase.
