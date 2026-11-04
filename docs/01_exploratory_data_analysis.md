@@ -1,4 +1,4 @@
-# Exploratory Data Analysis
+# Explorative Datenanalyse
 
 ## Ziel
 
@@ -119,4 +119,4 @@ Danach folgen:
 
 Die während der explorativen Analyse gefundenen Datenqualitätsprobleme werden separat dokumentiert.
 
-→ [Data Quality Investigation](02_data_quality_investigation.md)
+→ [Untersuchung der Datenqualität](02_data_quality_investigation.md)

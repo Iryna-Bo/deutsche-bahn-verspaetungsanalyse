@@ -1,4 +1,4 @@
-# Data Quality Investigation
+# Untersuchung der Datenqualität
 
 ## Ziel
 

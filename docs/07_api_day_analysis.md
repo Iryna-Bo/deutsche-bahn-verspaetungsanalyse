@@ -118,6 +118,8 @@ Die Ergebnisse der 24-Stunden-Snapshot-Analyse wurden in einem interaktiven Powe
 
 <img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/results/api_day/db_api_dashboard.png" alt="24 Stunden Snapshot Analyse" width="2000" high="1400"/>  
 
+[Dashboard in Power BI](../dashboard/api_day_analysis/api_day_analysis.pbix)  
+
 
 
 Das Dashboard zeigt:
