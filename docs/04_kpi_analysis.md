@@ -189,7 +189,7 @@ Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höh
 
 Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatungsteil_nach_Wochentag_03_2025.png" alt="Verspatungsteil nach Wochentag März 2025" width="500" high="300"/>     
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatungsteil_nach_Wochentag_03_2025.png" alt="Verspatungsteil nach Wochentag März 2025" width="700" high="500"/>     
 
  
 ---  
