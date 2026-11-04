@@ -107,18 +107,18 @@ Beispiele für hohe Anteile von Beobachtungen mit mindestens 5 Minuten Verspätu
 | Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  3,90 % |  
 
 
-
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Stationen_03_2025.png" alt="Stationen_03_2025" width="1000" high="800"/>    
-
-
-Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
-
 Die Ergebnisse zeigen, dass die Häufigkeit stärkerer Verspätungen zwischen den Bahnhöfen erheblich variiert.
 
 Dabei werden die Ergebnisse nicht als Qualitätsranking der Bahnhöfe interpretiert. Unterschiede in Zugangebot, Verkehrsstruktur und Anzahl der Beobachtungen können die Kennzahlen beeinflussen.
 
 Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätungskennzahlen. Deshalb werden Verspätungen und Ausfälle getrennt betrachtet.  
 
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Stationen_03_2025.png" alt="Stationen_03_2025" width="1000" high="800"/>    
+
+
+
+Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
 [SQL-Abfrage – Stationen KPI Analysis](../sql/station_kpi_analysis.sql)  
 [Python-Skript – Stationen KPI Analysis](../src/analyze_station_kpis.py)  
 
@@ -164,7 +164,7 @@ Für die zeitliche Analyse wird die geplante Ereigniszeit verwendet.
 * Die Auswertung der Zeitintervalle ermöglicht einen differenzierteren Vergleich der Verspätungskennzahlen zwischen den Zugtypen.
 * Die Ergebnisse zeigen, dass Verspätungen nicht gleichmäßig über den Tag verteilt sind und sowohl die Tageszeit als auch der Zugtyp bei der deskriptiven Analyse berücksichtigt werden sollten. 
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Tageszeit_Zugtyp_03_2025.png" alt="Tageszeit_Zugtyp_03_2025" width="500" high="280"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Tageszeit_Zugtyp_03_2025.png" alt="Tageszeit_Zugtyp_03_2025" width="700" high="400"/>    
 
 
 ---
@@ -189,7 +189,7 @@ Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höh
 
 Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatung_nach_Wochentag_03_2025.png" alt="Verspätung_nach_Wochentag_03_2025" width="400" high="100"/>     
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatung_nach_Wochentag_03_2025.png" alt="Verspatungsteil_nach_Wochentag_03_2025" width="500" high="300"/>     
 
  
 ---  
@@ -219,7 +219,7 @@ Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Au
 
 Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="150" high="400"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="200" high="450"/>    
 
 
 ---

@@ -1,4 +1,4 @@
-# Historical Comparison
+# Historischer Vergleich
 
 
 
@@ -166,8 +166,14 @@ Besonders der Vergleich Januar–August 2025 mit Januar–August 2026 zeigt, das
 
 
 
-Dies deutet auf eine Veränderung vor allem im oberen Bereich der Verspätungsverteilung hin. Aus den vorliegenden Daten lässt sich jedoch nicht ableiten, welche Ursachen dafür verantwortlich sind.
+Dies deutet auf eine Veränderung vor allem im oberen Bereich der Verspätungsverteilung hin. Aus den vorliegenden Daten lässt sich jedoch nicht ableiten, welche Ursachen dafür verantwortlich sind.  
 
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Zeitraumvergleich_2024_2025_2026.png" alt="Zeitraumvergleich 2024-2025-2026" width="800" high="400"/>  
+
+
+Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
+[csv-Dateien](../results/historical/)  
 
 
 ---
