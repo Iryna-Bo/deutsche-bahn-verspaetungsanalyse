@@ -528,7 +528,8 @@ Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/his
 Die Analyse kann mithilfe der folgenden Skripte nachvollzogen und reproduziert werden:  
 
 - [Python-Skript – Statistische Analyse](../src/analyze_statistical_tests.py)  
-- [SQL-Abfrage – Datenextraktion](../sql/statistical_analysis.sql)      
+- [SQL-Abfrage – Datenextraktion](../sql/statistical_analysis.sql)  
+- [csv-Dateien](../results/statistical_analysis/)    
 
 
 
