@@ -1,4 +1,4 @@
-# KPI Analysis
+# KPI-Analyse
 
 ## 1. Ziel der Analyse
 
@@ -90,16 +90,6 @@ Der Median von 1 Minute sollte daher nicht isoliert betrachtet werden. Die Kombi
 
 ## 5. Analyse nach Bahnhof
 
-Die vollständigen Stations-Ranglisten und die Übersicht sind in der
-[historischen Stationsübersicht](../results/historical/plots/03g_station_kpi_overview_all_thresholds.png)
-verfügbar. Die sechs ergänzenden Top-/Bottom-Ranglisten liegen im selben
-Ordner: [≥5 Top](../results/historical/plots/03a_station_kpis_highest_5plus.png),
-[≥5 Bottom](../results/historical/plots/03b_station_kpis_lowest_5plus.png),
-[≥15 Top](../results/historical/plots/03c_station_kpis_highest_15plus.png),
-[≥15 Bottom](../results/historical/plots/03d_station_kpis_lowest_15plus.png),
-[≥60 Top](../results/historical/plots/03e_station_kpis_highest_60plus.png) und
-[≥60 Bottom](../results/historical/plots/03f_station_kpis_lowest_60plus.png).
-
 Die Analyse umfasst alle 107 Bahnhöfe der betrachteten Daten.
 
 Die Bahnhöfe unterscheiden sich deutlich hinsichtlich des Anteils stärkerer Verspätungen.
@@ -114,7 +104,13 @@ Beispiele für hohe Anteile von Beobachtungen mit mindestens 5 Minuten Verspätu
 | Stuttgart Hbf     |        46.162 | 31,97 % |   5,61 % |   0,34 % |  5,00 % |
 | Fulda             |         8.968 | 31,68 % |  12,96 % |   1,16 % |  3,88 % |
 | Osnabrück Hbf     |        10.920 | 30,31 % |  11,33 % |   0,94 % |  2,45 % |
-| Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  3,90 % |
+| Köln Hbf          |        38.757 | 30,21 % |  10,44 % |   0,79 % |  3,90 % |  
+
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Stationen_03_2025.png" alt="Stationen_03_2025" width="1000" high="800"/>    
+
+
+Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
 
 Die Ergebnisse zeigen, dass die Häufigkeit stärkerer Verspätungen zwischen den Bahnhöfen erheblich variiert.
 
@@ -122,9 +118,8 @@ Dabei werden die Ergebnisse nicht als Qualitätsranking der Bahnhöfe interpreti
 
 Der Ausfallanteil zeigt außerdem ein teilweise anderes Muster als die Verspätungskennzahlen. Deshalb werden Verspätungen und Ausfälle getrennt betrachtet.  
 
-[SQL-Abfrage – Train Type KPI Analysis](../sql/station_kpi_analysis.sql)  
-
-[Python-Skript – Train Type KPI Analysis](../src/analyze_station_kpis.py)  
+[SQL-Abfrage – Stationen KPI Analysis](../sql/station_kpi_analysis.sql)  
+[Python-Skript – Stationen KPI Analysis](../src/analyze_station_kpis.py)  
 
 ---
 
@@ -146,24 +141,30 @@ Bei ICE und IC ist insbesondere der Anteil stärkerer Verspätungen höher als b
 
 Die Zugtypen unterscheiden sich jedoch strukturell hinsichtlich Streckenlänge, Haltemuster, Einsatzgebiet und Fahrplan. Daher werden die Unterschiede deskriptiv dargestellt und nicht als kausaler Effekt des Zugtyps interpretiert.  
 
-Die KPI-Auswertung nach Zugtypen wurde mit DuckDB SQL durchgeführt: [SQL-Abfrage – Train Type KPI Analysis](../sql/train_type_kpi_analysis.sql)  
-
+[SQL-Abfrage – Train Type KPI Analysis](../sql/train_type_kpi_analysis.sql)  
 [Python-Skript – Train Type KPI Analysis](../src/analyze_train_type_kpis.py)  
 
 ---
 
-## 7. Analyse nach Tageszeit
+## 7. Ergebnisse der Analyse nach Stunden und Tageszeit
 
 Für die zeitliche Analyse wird die geplante Ereigniszeit verwendet.
 
-Die Ergebnisse zeigen ein unterschiedliches Muster für kleinere und sehr lange Verspätungen:
+### Verspätungen nach Stunden  
 
 * Verspätungen ab 5 Minuten treten besonders häufig am späten Nachmittag und frühen Abend auf.
 * Der höchste Anteil von ≥5 Minuten wurde um **17:00 Uhr mit 23,26 %** beobachtet.
 * Sehr lange Verspätungen ab 60 Minuten weisen dagegen höhere Anteile in den Nachtstunden auf.
-* Besonders hohe Werte zeigen sich zwischen **00:00 und 03:00 Uhr**.
+* Besonders hohe Werte zeigen sich zwischen **00:00 und 03:00 Uhr**. Der höchste Anteil wird um **02:00 Uhr (ca. 1,42 %)** beobachtet.  
 
-Die Ergebnisse müssen nach Zugtyp und Beobachtungszahl interpretiert werden, da sich die Zusammensetzung des Verkehrs über den Tag verändert.
+### Verspätungen nach Tageszeit und Zugtyp
+
+* Die Verspätungsmuster unterscheiden sich je nach Zugtyp und Tageszeit.
+* Die Auswertung der Zeitintervalle ermöglicht einen differenzierteren Vergleich der Verspätungskennzahlen zwischen den Zugtypen.
+* Die Ergebnisse zeigen, dass Verspätungen nicht gleichmäßig über den Tag verteilt sind und sowohl die Tageszeit als auch der Zugtyp bei der deskriptiven Analyse berücksichtigt werden sollten. 
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Tageszeit_Zugtyp.png" alt="Tageszeit_Zugtyp_03_2025" width="500" high="280"/>    
+
 
 ---
 
@@ -185,9 +186,12 @@ Der Anteil der Beobachtungen mit mindestens 5 Minuten Verspätung lag im März 2
 
 Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höher als am Wochenende.
 
-Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.
+Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.  
 
----
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatung_nach_Wochentag_03_2025.png" alt="Verspätung_nach_Wochentag_03_2025" width="800" high="200"/>     
+
+ 
+---  
 
 ## 9. Analyse der Ersatzverkehre
 
@@ -212,7 +216,10 @@ Ersatzverkehr-Beobachtungen weisen damit in den betrachteten Daten höhere Antei
 
 Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Aussage darüber, dass Ersatzverkehr die Ursache der höheren Verspätungen ist.
 
-Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.
+Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.  
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="300" high="800"/>    
+
 
 ---
 
@@ -245,7 +252,11 @@ Der Median blieb über das gesamte Jahr bei **1 Minute**.
 
 Gleichzeitig stiegen P95 und die Anteile stärkerer Verspätungen im Jahresverlauf deutlich an. Der höchste Anteil ab 5 Minuten wurde im Oktober mit **26,73 %** beobachtet.
 
-Die Ergebnisse zeigen somit vor allem eine Veränderung im oberen Bereich der Verspätungsverteilung, während der Median relativ stabil blieb.
+Die Ergebnisse zeigen somit vor allem eine Veränderung im oberen Bereich der Verspätungsverteilung, während der Median relativ stabil blieb.  
+
+
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Monatliche_Trends_2025.png" alt="Ersatzverkehr_03_2025" width="600" high="400"/>  
+
 
 ---
 
@@ -268,13 +279,19 @@ Aus der KPI-Analyse ergeben sich mehrere zentrale Beobachtungen:
 5. **Verspätungen zeigen ein zeitliches Muster.**
    Kleinere Verspätungen ab 5 Minuten treten besonders am späten Nachmittag und frühen Abend auf, während sehr lange Verspätungen häufiger in den Nachtstunden beobachtet werden.
 
-6. **Werktage weisen höhere Anteile stärkerer Verspätungen auf als Wochenenden.**
+6. **Werktage weisen höhere Anteile stärkerer Verspätungen auf als Wochenenden.**  
 
-7. **Ersatzverkehr-Beobachtungen zeigen höhere Verspätungsanteile.**
+7. **Die Analyse zeigt deutliche zeitliche Unterschiede im Verspätungsgeschehen. Besonders der späte Nachmittag weist einen erhöhten Anteil moderater Verspätungen auf, während sehr lange Verspätungen häufiger in den Nachtstunden auftreten. Die Ergebnisse sind deskriptiv und erlauben keine direkten Rückschlüsse auf die Ursachen.  
+
+8. **Ersatzverkehr-Beobachtungen zeigen höhere Verspätungsanteile.**
    Dieser Zusammenhang wird deskriptiv dargestellt und nicht als kausaler Zusammenhang interpretiert.
 
-8. **Die monatliche Entwicklung 2025 zeigt eine Zunahme stärkerer Verspätungen im Jahresverlauf.**
-   Gleichzeitig blieb der Median stabil.
+9. **Die monatliche Entwicklung 2025 zeigt eine Zunahme stärkerer Verspätungen im Jahresverlauf.**
+   Gleichzeitig blieb der Median stabil.  
+
+Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)  
+[SQL-Abfragen](../sql/)  
+[Python-Skripte](../src/)   
 
 ---
 

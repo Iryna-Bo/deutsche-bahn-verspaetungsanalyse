@@ -520,7 +520,7 @@ Die Analyse untersucht Zusammenhänge zwischen Zugtyp und Verspätungen. Sie ist
 <img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Statistik_03_2025.png" alt="Statistik_03_2025" width="1000" high="800"/>    
 
 
-Siehe auch Dashboard in Power BI → [Historical Analysis](https://raw.githubusercontent.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/master/dashboard/historical_analysis/historical_analysis.pbix)    
+Dashboard in Power BI [Historical Analysis](../dashboard/historical_analysis/historical_analysis.pbix)    
 
 
 ## Reproduzierbarkeit  
