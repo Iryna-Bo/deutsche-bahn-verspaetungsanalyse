@@ -4,18 +4,19 @@
 
 Dieses Portfolio-Projekt untersucht Zugverspätungen und Zugausfälle in Deutschland auf Basis historischer Daten und aktueller Informationen der Deutschen Bahn.
 
-Ziel ist es, zeitliche und räumliche Muster zu erkennen, Unterschiede zwischen Zugtypen und Bahnhöfen zu untersuchen und mögliche betriebliche sowie finanzielle Auswirkungen von Verspätungen abzuschätzen.
+Ziel ist es, zeitliche und räumliche Muster zu erkennen, Unterschiede zwischen Zugtypen und Bahnhöfen zu untersuchen.  
 
-Das Projekt verbindet Datenanalyse, statistische Methoden, SQL, Python, Datenvisualisierung und den Aufbau einer automatisierten Datenerhebung.
+Das Projekt verbindet Datenanalyse, statistische Methoden, SQL, Python, Datenvisualisierung und den Aufbau einer automatisierten Datenerhebung.  
 
-## Business Questions
+## Fragen
 
 - Wie unterscheiden sich Verspätungen und Zugausfälle nach Bahnhof und Zugtyp?
 - Zu welchen Tageszeiten und an welchen Wochentagen treten Verspätungen häufiger auf?
 - Wie häufig kommt es zu kurzen, mittleren und starken Verspätungen?
 - Welche Bahnhöfe und Zugtypen weisen besonders hohe Verspätungswerte auf?
-- Wie verändern sich Verspätungen und Ausfälle im Zeitverlauf?
+- Wie verändern sich Verspätungen und Ausfälle im Zeitverlauf?  
 - Welche möglichen finanziellen Auswirkungen lassen sich anhand transparenter Annahmen abschätzen?
+
 
 ## Datenquellen
 
@@ -144,7 +145,7 @@ Codex unterstützte mich insbesondere bei:
 - der Entwicklung und Überarbeitung komplexer Python-Skripte
 - der Fehlersuche und der Suche nach Lösungsansätzen
 - der Prüfung von CSV-Dateien und Datenstrukturen
-- der Erstellung und Anpassung von Visualisierungen
+- der Erstellung und Anpassung von Visualisierungen (Python)
 - der Aufbereitung von Analyseergebnissen und Dokumentation
 
 Der Einsatz des AI coding agent beschleunigte die technische Umsetzung und erleichterte die Arbeit mit umfangreichen Skripten.
@@ -153,20 +154,18 @@ Die Vorschläge und Ergebnisse wurden von mir geprüft. Die Projektziele, method
 
 [Dokumentation: AI-gestützter Workflow](docs/08_ai_assisted_workflow.md)
 
-## Tech Stack
+## Tech Stack  
 
-| Bereich | Technologien |
-|---|---|
-| Programmiersprache | Python |
-| Datenanalyse | Pandas, NumPy |
-| Datenbank und SQL | DuckDB |
-| Statistische Analyse | SciPy, Statsmodels |
-| Datenvisualisierung | Matplotlib, Power BI |
-| Datenformate | XML, CSV, Parquet |
-| Datenquelle und API | Hugging Face, Deutsche Bahn Timetables API |
-| Automatisierung | GitHub Actions, GitHub REST API, cron-job.org |
-| AI-Unterstützung | OpenAI Codex |
-| Versionskontrolle | Git, GitHub |
+- **Programmiersprachen:** Python, SQL
+- **Datenanalyse:** Pandas, NumPy, DuckDB, SciPy, Statsmodels
+- **Datenvisualisierung:** Matplotlib, Power BI
+- **Datenquellen:** Deutsche Bahn Timetables API, Hugging Face
+- **Datenformate:** CSV, Parquet, XML
+- **Automatisierung:** GitHub Actions, GitHub REST API, cron-job.org
+- **Versionsverwaltung:** Git, GitHub
+- **Entwicklungsumgebung:** Notepad, PowerShell
+- **AI-Unterstützung:** OpenAI Codex  
+
 
 ## Projektstruktur
 
@@ -211,7 +210,7 @@ deutsche-bahn-verspaetungsanalyse/
 ├── LICENSE
 ├── README.md
 └── requirements.txt
-```
+```  
 
 ### Ergänzende Hinweise
 
@@ -221,7 +220,8 @@ deutsche-bahn-verspaetungsanalyse/
 - **`results/`** enthält ausgewählte Analyseergebnisse in Form von CSV-Dateien und Visualisierungen.
 - **`docs/`** dokumentiert die Fragestellungen, Datenstruktur, Datenqualität, Methodik und Ergebnisse des Projekts.
 - **`dashboard/`** enthält die Power-BI-Dashboards für die historische Analyse und die API-basierte Tagesanalyse.
-```
+```  
+
 
 ## Reproduzierbarkeit und Einschränkungen
 
@@ -235,4 +235,24 @@ Die Ergebnisse beschreiben beobachtete Muster und statistische Zusammenhänge. S
 
 Die zentralen Analysen, SQL-Abfragen, Python-Skripte und Power BI Dashboards wurden umgesetzt. Die historische Analyse und die API-basierte Datenerhebung bilden zwei ergänzende Bestandteile des Projekts.
 
-Das Projekt zeigt einen durchgängigen Analyseprozess von der Datenbeschaffung und -prüfung über SQL- und Python-Analysen bis zur Visualisierung und Interpretation der Ergebnisse.
+Das Projekt zeigt einen durchgängigen Analyseprozess von der Datenbeschaffung und -prüfung über SQL- und Python-Analysen bis zur Visualisierung und Interpretation der Ergebnisse.  
+
+
+
+## Praktische und wirtschaftliche Relevanz
+
+Verspätungen im Schienenverkehr können sowohl für Fahrgäste als auch für Verkehrsunternehmen wirtschaftliche Auswirkungen haben.
+
+Für Fahrgäste gelten gemäß der europäischen Fahrgastrechte-Verordnung unter bestimmten Voraussetzungen Entschädigungsansprüche bei Verspätungen am Zielbahnhof:
+
+- **Ab 60 Minuten Verspätung:** 25 % des Fahrpreises
+- **Ab 120 Minuten Verspätung:** 50 % des Fahrpreises
+
+Die Analyse betrachtet daher auch Verspätungen ab 60 Minuten als besonders relevant. Die entsprechenden Kennzahlen können helfen, das Ausmaß erheblicher Verspätungen im untersuchten Zeitraum einzuordnen.
+
+Die Ergebnisse stellen jedoch keine Berechnung tatsächlicher Entschädigungszahlungen dar. Die analysierten Verspätungen einzelner Zugereignisse an Bahnhöfen lassen sich nicht unmittelbar mit Verspätungen am Zielbahnhof einzelner Reisender gleichsetzen.
+
+Eine konkrete Schätzung der finanziellen Verluste der Deutschen Bahn ist nicht Bestandteil des Projekts, da hierfür zusätzliche betriebswirtschaftliche Daten erforderlich wären.
+
+**Quelle:** [Bundesministerium für Verkehr – Fahrgastrechte im Eisenbahnverkehr](https://www.bmv.de/SharedDocs/DE/Artikel/E/schiene-schienenpersonenverkehr/fahrgastrechte-zug.html)  
+
