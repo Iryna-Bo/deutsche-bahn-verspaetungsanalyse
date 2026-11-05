@@ -189,7 +189,7 @@ Der Anteil stärkerer Verspätungen ab 5 bzw. 15 Minuten liegt an Werktagen höh
 
 Für Verspätungen ab 60 Minuten ist der Unterschied zwischen den Wochentagen deutlich geringer.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatungsteil_nach_Wochentag_03_2025.png" alt="Verspatungsteil nach Wochentag März 2025" width="700" high="600"/>     
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Verspatungsteil_nach_Wochentag_03_2025.png" alt="Verspatungsteil nach Wochentag März 2025" width="800" high="700"/>     
 
  
 ---  
@@ -219,7 +219,7 @@ Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Au
 
 Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="200" high="450"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="300" high="450"/>    
 
 
 ---
