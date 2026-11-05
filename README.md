@@ -2,136 +2,237 @@
 
 ## Projektüberblick
 
-Dieses Portfolio-Projekt untersucht Zugverspätungen und Zugausfälle in Deutschland.
+Dieses Portfolio-Projekt untersucht Zugverspätungen und Zugausfälle in Deutschland auf Basis historischer Daten und aktueller Informationen der Deutschen Bahn.
 
-Ziel ist es, Muster und Unterschiede nach Bahnhof, Zugtyp, Tageszeit und Zeitraum zu analysieren. Zusätzlich soll untersucht werden, welche möglichen finanziellen Auswirkungen häufige und starke Verspätungen haben können.
+Ziel ist es, zeitliche und räumliche Muster zu erkennen, Unterschiede zwischen Zugtypen und Bahnhöfen zu untersuchen und mögliche betriebliche sowie finanzielle Auswirkungen von Verspätungen abzuschätzen.
 
-Das Projekt verbindet historische Daten mit aktuellen Daten aus der offiziellen Deutsche Bahn API.
+Das Projekt verbindet Datenanalyse, statistische Methoden, SQL, Python, Datenvisualisierung und den Aufbau einer automatisierten Datenerhebung.
 
 ## Business Questions
 
-* Wie unterscheiden sich Zugverspätungen nach Bahnhof und Zugtyp?
-* Zu welchen Tageszeiten und an welchen Wochentagen treten häufiger Verspätungen auf?
-* Wie häufig kommt es zu starken Verspätungen und Zugausfällen?
-* Welche Bahnhöfe oder Zugtypen zeigen besonders hohe Verspätungsrisiken?
-* Wie kann das finanzielle Risiko auf Basis transparenter Annahmen geschätzt werden?
+- Wie unterscheiden sich Verspätungen und Zugausfälle nach Bahnhof und Zugtyp?
+- Zu welchen Tageszeiten und an welchen Wochentagen treten Verspätungen häufiger auf?
+- Wie häufig kommt es zu kurzen, mittleren und starken Verspätungen?
+- Welche Bahnhöfe und Zugtypen weisen besonders hohe Verspätungswerte auf?
+- Wie verändern sich Verspätungen und Ausfälle im Zeitverlauf?
+- Welche möglichen finanziellen Auswirkungen lassen sich anhand transparenter Annahmen abschätzen?
 
 ## Datenquellen
 
 ### Historische Daten
 
-Für die historische Analyse wird der Datensatz **Deutsche Bahn Data** von `piebro` auf Hugging Face verwendet.
+Für die historische Analyse wird der Datensatz [Deutsche Bahn Data](https://huggingface.co/datasets/piebro/deutsche-bahn-data) von `piebro` auf Hugging Face verwendet.
 
-Die Daten basieren auf öffentlichen Deutsche-Bahn-APIs und enthalten unter anderem:
+Die Daten basieren auf Informationen der Deutschen Bahn und enthalten unter anderem:
 
-* Bahnhof
-* Zugnummer und Zugtyp
-* geplante und geänderte Ankunfts- und Abfahrtszeiten
-* Verspätung
-* Informationen zu Zugausfällen
+- Bahnhöfe und Zugnummern
+- Zugtypen
+- geplante und tatsächliche bzw. geänderte Ankunfts- und Abfahrtszeiten
+- Verspätungen
+- Zugausfälle und Ersatzverkehr
 
-Für die erste historische Analyse werden Daten aus dem Zeitraum **Januar bis Oktober 2025** verwendet.
+Die historische Analyse umfasst verschiedene Zeiträume aus den Jahren 2024 bis 2026. Für einzelne Analysen werden festgelegte Zeiträume und Bahnhofskohorten verwendet.
 
-Die Rohdaten werden aufgrund ihrer Größe nicht im GitHub-Repository gespeichert.
+Die Rohdaten werden aufgrund ihres Umfangs nicht im GitHub-Repository gespeichert. Die Analysen werden mit DuckDB direkt auf den bereitgestellten Parquet-Dateien durchgeführt.
 
-### Aktuelle Daten
+### Aktuelle Daten – Deutsche Bahn API
 
-Zusätzlich werden aktuelle Daten über die offizielle **Deutsche Bahn Timetables API** gesammelt.
+Zusätzlich werden aktuelle Fahrplaninformationen über die offizielle **Deutsche Bahn Timetables API** gesammelt.
 
-Der API-Teil dient vor allem dazu, eine kleine Datenpipeline zu zeigen:
+Die Datenerhebung umfasst sechs ausgewählte Bahnhöfe:
 
-**API → XML → Python → Validierung → Parquet → SQL-Analyse**
+- Frankfurt (Main) Hbf
+- Mannheim Hbf
+- Stuttgart Hbf
+- Köln Hbf
+- Hamburg Hbf
+- Berlin Hbf
 
-Ein erster Testlauf wurde bereits mit sechs Bahnhöfen und vier Snapshots über etwa 30 Minuten durchgeführt.
+Die Erfassung erfolgt automatisiert alle zehn Minuten über **cron-job.org und GitHub Actions**. Die Daten werden als zeitgestempelte Parquet-Dateien gespeichert.
 
-## Exploratory Data Analysis
+**Datenpipeline:**
 
-Vor der eigentlichen Analyse wurde eine explorative Untersuchung der historischen Daten durchgeführt.
+`Deutsche Bahn API → XML → Python → Validierung → Parquet → DuckDB / SQL → Analyse → Power BI`
 
-Dabei wurden unter anderem Datenverteilung, Verspätungen, Zugtypen, Bahnhöfe und mögliche Datenqualitätsprobleme untersucht.
+Die API-Analyse untersucht sowohl die Qualität und Abdeckung der gesammelten Momentaufnahmen als auch die zeitliche Entwicklung beobachteter Zugereignisse.
 
-Die wichtigsten Ergebnisse sind dokumentiert in:
+## Analysen und Ergebnisse
 
-[Exploratory Data Analysis](docs/01_exploratory_data_analysis.md)
+### Explorative Datenanalyse (EDA)
 
-## Data Quality
+Die erste Untersuchung diente dazu, die Datenstruktur, Verteilungen und mögliche Datenqualitätsprobleme kennenzulernen.
 
-Während der explorativen Analyse wurden unter anderem sehr große negative Werte bei `delay_in_min` sowie fehlende geplante Zeiten gefunden.
+[Dokumentation: Exploratory Data Analysis](docs/01_exploratory_data_analysis.md)
 
-Diese Punkte werden vor der Berechnung der finalen KPIs berücksichtigt.
+### Datenqualität und Datenstruktur
 
-Details:
+Die historischen Daten wurden auf Vollständigkeit, Plausibilität und strukturelle Besonderheiten untersucht. Dabei wurden unter anderem fehlende geplante Zeiten und auffällige Verspätungswerte identifiziert.
 
-[Data Quality Investigation](docs/02_data_quality_investigation.md)
+- [Data Quality Investigation](docs/02_data_quality_investigation.md)
+- [Data Structure Investigation](docs/03_data_structure_investigation.md)
 
-## Geplante Analyse
+### KPI-Analyse
 
-Im weiteren Projektverlauf werden folgende Bereiche ergänzt:
+Die Verspätungs- und Ausfallkennzahlen wurden nach verschiedenen Dimensionen untersucht:
 
-* Datenbereinigung und Validierung
-* SQL-basierte Analyse
-* Verspätungs-KPIs
-* Analyse nach Bahnhof, Zugtyp, Tageszeit und Zeitraum
-* Wahrscheinlichkeit verschiedener Verspätungsstufen
-* Analyse von Zugausfällen
-* geschätzte finanzielle Auswirkungen
-* Dashboard
-* Business Insights und Handlungsempfehlungen
+- Bahnhof
+- Zugtyp
+- Tageszeit
+- Wochentag
+- Monat und Zeitraum
+
+Die Analysen umfassen unter anderem Verspätungsschwellen, Verteilungen, Ausfallquoten und Ersatzverkehr.
+
+- [KPI-Analyse](docs/04_kpi_analysis.md)
+- [Historischer Zeitraumvergleich](docs/05_historical_comparison.md)
+
+### Statistische Analyse
+
+Mit Python, SciPy und Statsmodels wurden Unterschiede zwischen Zugtypen statistisch untersucht.
+
+Die Analyse umfasst deskriptive Statistiken, statistische Tests, Effektstärken, Konfidenzintervalle und Post-hoc-Vergleiche.
+
+- [Dokumentation der statistischen Analyse](docs/06_statistical_analysis.md)
+- [Python-Skript](src/analyze_statistical_tests.py)
+- [SQL-Abfrage](sql/statistical_analysis.sql)
+- [Ergebnisse und Visualisierungen](results/statistical_analysis/)
+
+### API-Tagesanalyse
+
+Die über einen Zeitraum von 24 Stunden gesammelten API-Daten wurden hinsichtlich Snapshot-Qualität, Stationsabdeckung, Ereignistypen und zeitlicher Entwicklung analysiert.
+
+Untersucht wurden unter anderem:
+
+- Vollständigkeit und zeitliche Abdeckung der Snapshots
+- Verteilung der beobachteten Verspätungswerte
+- Konsistenz zwischen geplanten und geänderten Zeitangaben
+- Entwicklung der Verspätungen wiederholt beobachteter Zugereignisse
+
+- [Dokumentation der API-Tagesanalyse](docs/07_api_day_analysis.md)
+- [Snapshot-Analyse](src/analyze_api_day.py)
+- [Ereignisentwicklung](src/analyze_api_event_evolution.py)
+- [Analyseergebnisse](results/api_day/)
+
+## Power BI Dashboards
+
+Die Ergebnisse der Analysen werden in zwei Power BI Dashboards visualisiert.
+
+<details>
+<summary>Historische Analyse</summary>
+
+Das Dashboard umfasst unter anderem Verspätungs- und Ausfallkennzahlen, zeitliche Muster, Zugtypen, Bahnhöfe, Ersatzverkehr und Zeitraumvergleiche.
+
+[Power BI Dashboard – Historische Analyse](dashboard/historical_analysis/historical_analysis.pbix)
+
+</details>
+
+<details>
+<summary>API-Tagesanalyse</summary>
+
+Das Dashboard zeigt die Qualität der Datenerhebung und die Entwicklung der Verspätungen beobachteter Zugereignisse über den Erfassungszeitraum.
+
+[Power BI Dashboard – API-Tagesanalyse](dashboard/api_day_analysis/api_day_analysis.pbix)
+
+</details>
+
+## AI-gestützter Workflow
+
+Für die Entwicklung und Überarbeitung von Python-Skripten habe ich **OpenAI Codex als AI coding agent** eingesetzt.
+
+Codex unterstützte mich insbesondere bei:
+
+- der Entwicklung und Überarbeitung komplexer Python-Skripte
+- der Fehlersuche und der Suche nach Lösungsansätzen
+- der Prüfung von CSV-Dateien und Datenstrukturen
+- der Erstellung und Anpassung von Visualisierungen
+- der Aufbereitung von Analyseergebnissen und Dokumentation
+
+Der Einsatz des AI coding agent beschleunigte die technische Umsetzung und erleichterte die Arbeit mit umfangreichen Skripten.
+
+Die Vorschläge und Ergebnisse wurden von mir geprüft. Die Projektziele, methodischen Entscheidungen, Interpretation und fachliche Verantwortung lagen bei mir.
+
+[Dokumentation: AI-gestützter Workflow](docs/08_ai_assisted_workflow.md)
 
 ## Tech Stack
 
-* Python
-* Pandas
-* DuckDB
-* SQL
-* XML / REST API
-* Parquet
-* Power BI / Tableau
-* Git & GitHub
+| Bereich | Technologien |
+|---|---|
+| Programmiersprache | Python |
+| Datenanalyse | Pandas, NumPy |
+| Datenbank und SQL | DuckDB |
+| Statistische Analyse | SciPy, Statsmodels |
+| Datenvisualisierung | Matplotlib, Power BI |
+| Datenformate | XML, CSV, Parquet |
+| Datenquelle und API | Hugging Face, Deutsche Bahn Timetables API |
+| Automatisierung | GitHub Actions, GitHub REST API, cron-job.org |
+| AI-Unterstützung | OpenAI Codex |
+| Versionskontrolle | Git, GitHub |
 
 ## Projektstruktur
 
 ```text
 deutsche-bahn-verspaetungsanalyse/
 │
-├── data/
-│   ├── raw/
-│   └── processed/
+├── .github/workflows/
+│   └── db_api_collect.yml
+│
+├── dashboard/
+│   ├── api_day_analysis/
+│   │   └── api_day_analysis.pbix
+│   └── historical_analysis/
+│       └── historical_analysis.pbix
 │
 ├── docs/
 │   ├── 01_exploratory_data_analysis.md
-│   └── 02_data_quality_investigation.md
+│   ├── 02_data_quality_investigation.md
+│   ├── 03_data_structure_investigation.md
+│   ├── 04_kpi_analysis.md
+│   ├── 05_historical_comparison.md
+│   ├── 06_statistical_analysis.md
+│   ├── 07_api_day_analysis.md
+│   └── 08_ai_assisted_workflow.md
 │
-├── notebooks/
+├── pictures/     # Dashboard-Screenshots und Projektvisualisierungen
 │
-├── src/
-│   └── collect_db_data.py
+├── results/
+│   ├── api_day/
+│   ├── historical/
+│   └── statistical_analysis/
 │
-├── sql/
+├── scripts/
+│   └── explore_route_reconstruction.py
 │
-├── dashboard/
+├── sql/          # SQL-Abfragen für KPI- und statistische Analysen
 │
+├── src/          # Python-Skripte für Datenerhebung,
+│                 # Datenverarbeitung und Analysen
+│
+├── .gitignore
+├── LICENSE
 ├── README.md
-└── .gitignore
+└── requirements.txt
 ```
 
-## Historical visualizations
+### Ergänzende Hinweise
 
-See [docs/08_historical_visualizations.md](docs/08_historical_visualizations.md) for the remote DuckDB pipeline, pinned Hugging Face revision, cohort definition, outputs, and limitations. The script writes generated tables and plots under `results/historical/` and `results/historical/plots/` without storing raw Parquet files locally.  
+- **`src/`** enthält Python-Skripte zur Datenerhebung über die Deutsche Bahn API, zur Verarbeitung und Analyse der Daten sowie zur Berechnung von KPIs und statistischen Kennzahlen.
+- **`sql/`** enthält SQL-Abfragen für verschiedene historische Analysen, darunter Verspätungskennzahlen nach Zugtyp, Bahnhof, Wochentag und Tageszeit sowie statistische Auswertungen.
+- **`scripts/`** enthält einen ergänzenden experimentellen Skript zur Untersuchung und Rekonstruktion möglicher Zugrouten anhand historischer Daten. Es gehört nicht zum Kern der Analysen.
+- **`results/`** enthält ausgewählte Analyseergebnisse in Form von CSV-Dateien und Visualisierungen.
+- **`docs/`** dokumentiert die Fragestellungen, Datenstruktur, Datenqualität, Methodik und Ergebnisse des Projekts.
+- **`dashboard/`** enthält die Power-BI-Dashboards für die historische Analyse und die API-basierte Tagesanalyse.
+```
 
-### Statistische Analyse
+## Reproduzierbarkeit und Einschränkungen
 
-Die statistische Analyse wurde mit Python, SciPy und Statsmodels durchgeführt. DuckDB SQL wurde für die Datenextraktion verwendet.
+Die Analysen basieren auf festgelegten Datenquellen, Zeiträumen und Analyseeinheiten. Methodische Entscheidungen und wesentliche Einschränkungen sind in den jeweiligen Dokumentationen beschrieben.
 
-- [Python-Skript – Statistische Analyse](src/analyze_statistical_tests.py)
-- [SQL-Abfrage – Datenextraktion](sql/statistical_analysis.sql)
-- [Dokumentation der statistischen Analyse](docs/06_statistical_analysis.md)  
+Die historischen Rohdaten werden nicht im Repository gespeichert. Für die API-Analyse werden die erhobenen Momentaufnahmen und daraus erzeugten Ergebnisse verwendet.
 
+Die Ergebnisse beschreiben beobachtete Muster und statistische Zusammenhänge. Sie erlauben nicht automatisch kausale Schlussfolgerungen. Finanzielle Auswirkungen beruhen auf transparenten Annahmen und sind als Schätzungen zu verstehen.
 
-## Aktueller Projektstatus
+## Projektstatus
 
-Das Projekt befindet sich in der Entwicklungsphase.
+Die zentralen Analysen, SQL-Abfragen, Python-Skripte und Power BI Dashboards wurden umgesetzt. Die historische Analyse und die API-basierte Datenerhebung bilden zwei ergänzende Bestandteile des Projekts.
 
-Die Datenquellen wurden ausgewählt, die historische Datenstruktur wurde untersucht und eine erste API-Datensammlung wurde erfolgreich getestet.
-
-Die nächsten Schritte sind die reproduzierbare Aufbereitung der historischen Daten und die eigentliche Analyse.
+Das Projekt zeigt einen durchgängigen Analyseprozess von der Datenbeschaffung und -prüfung über SQL- und Python-Analysen bis zur Visualisierung und Interpretation der Ergebnisse.
