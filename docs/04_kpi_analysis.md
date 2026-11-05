@@ -219,7 +219,7 @@ Die Ergebnisse zeigen eine statistische Auffälligkeit, erlauben jedoch keine Au
 
 Bei rund 80,5 % der Ersatzverkehr-Beobachtungen ist außerdem eine `replaced_train_number` vorhanden.  
 
-<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="300" high="450"/>    
+<img src="https://github.com/Iryna-Bo/deutsche-bahn-verspaetungsanalyse/blob/master/pictures/Dashboard_Ersatzverkehr_03_2025.png" alt="Ersatzverkehr_03_2025" width="250" high="400"/>    
 
 
 ---
